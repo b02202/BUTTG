@@ -13,11 +13,15 @@ namespace TTG1
     {
         public static string ParseDetails(string path)
         {
-            XDocument TivoInfo = XDocument.Load(@"c:\temp\details.xml");
-            XDocument TivoInfo2 = XDocument.Load(@"c:\temp\details2.xml");
-
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load(@"c:\temp\details2.xml");
+            XmlNode root = xDoc.SelectSingleNode("*");
+            ReadXML(root);
+
+            XmlDocument xD = new XmlDocument();
+            xD.
+            string details = "";
+            return details;
 
 
             //////////Testing XmlNodeList, commented to test XmlElemet instead
@@ -43,19 +47,6 @@ namespace TTG1
             //    Console.WriteLine(title.InnerText);
             //}
 
-
-
-            XmlNode root = xDoc.SelectSingleNode("*");
-            ReadXML(root);
-
-
-
-
-            //est comment
-
-
-
-
             //var results = from q in TivoInfo2.Descendants("Item")
             //              select new
             //              {
@@ -67,8 +58,6 @@ namespace TTG1
             //    Console.WriteLine("Title: {0}, Epsode: {1}", item.Title, item.Episode);
             //}
 
-            string details = "";
-            return details;
         }
 
         public static void ReadXML(XmlNode root)

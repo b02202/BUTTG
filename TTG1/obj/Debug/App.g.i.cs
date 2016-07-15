@@ -64,7 +64,6 @@ namespace TTG1 {
             TTG1.App app = new TTG1.App();
             app.InitializeComponent();
             app.Run();
-            
         }
     }
 }
