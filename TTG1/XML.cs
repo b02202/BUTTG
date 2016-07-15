@@ -75,17 +75,18 @@ namespace TTG1
         {
             if (root is XmlElement)
             {
-                Console.WriteLine("Current Root Namne: " + root.Name);
+                Console.WriteLine("Current Root Namne: " + root.Name + " = " + root.InnerText);
+                //Console.WriteLine("Value: " + root.Attributes[root.Name].Value);
                 DoWork(root);
 
                 if (root.HasChildNodes)
                 {
-                    Console.WriteLine("Get Child");
+                 //   Console.WriteLine("Get Child");
                     ReadXML(root.FirstChild);
                 }
                 if (root.NextSibling != null)
                 {
-                    Console.WriteLine("Get Sibling");
+                 //   Console.WriteLine("Get Sibling");
                     ReadXML(root.NextSibling);
                 }
             }
@@ -97,25 +98,44 @@ namespace TTG1
 
         private static void DoWork(XmlNode node)
         {
-            if (node.Name == "TiVoContainer")
-            {
-                Console.WriteLine("Found Root TiVoContainer");
-                ReadXML(node.NextSibling);
-            }
-            if (node.Name == "Details" && node.Attributes["UniqueID"].InnerText == "NowPlaying")
-            {
-                Console.WriteLine("Found Details - Now Playing");
-                ReadXML(node.NextSibling);
-            }
+            //if (node.Name == "TiVoContainer")
+            //{
+            //    Console.WriteLine("Found Root TiVoContainer");
+            //    ReadXML(node.NextSibling);
+            //}
+            //if (node.Name == "Details" && node.LastChild.ToString() == "/NowPlaying")
+            //{
+            //    Console.WriteLine("Found Details - Now Playing");
+            //    ReadXML(node.NextSibling);
+            //}
 
-            if (node.Attributes["Title"] != null)
+            //if (node.Attributes["Title"] != null)
+            //{
+            //    Console.WriteLine("Title: " + node.ParentNode.ParentNode.Attributes["Title"].Value);
+            //    Console.WriteLine("Episode Title: " + node.ParentNode.ParentNode.Attributes["EpisodeTitle"].Value);
+            //    Console.WriteLine(".....");
+            //}
+
+            switch (node.Name)
             {
-                Console.WriteLine("Title: " + node.ParentNode.ParentNode.Attributes["Title"].Value);
-                Console.WriteLine("Episode Title: " + node.ParentNode.ParentNode.Attributes["EpisodeTitle"].Value);
-                Console.WriteLine(".....");
+                case "TiVoContainer":
+                    Console.WriteLine("Node Name: "+ node.Name);
+                    ReadXML(node.NextSibling);
+                    break;
+                case "Details":
+                    Console.WriteLine("Node Name: " + node.Name);
+                    if (node.HasChildNodes)
+                    {
+                        Console.WriteLine("First Child Node: " + node.FirstChild.Name);
+                     //   Console.WriteLine(node.InnerText);
+                        
+                    }
+                    ReadXML(node.NextSibling);
+                    break;
+
+                default:
+                    break;
             }
-
-
 
         }
     }
