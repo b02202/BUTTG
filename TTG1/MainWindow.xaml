@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:TTG1"
         mc:Ignorable="d"
         Title="MainWindow" Height="1000" Width="1900">
-    <Grid>
+    <Grid x:Name="grdMain1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="921*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
         <ListView x:Name="listShows" HorizontalAlignment="Left" Height="380" Margin="21,189,0,0" VerticalAlignment="Top" Width="1400">
             <ListView.View>
                 <GridView>

@@ -23,7 +23,7 @@ namespace TTG1
 
         public static string GetDetails(string TivoAddress, string Password)
         {
-            return GetContent(new Uri("https://" + TivoAddress + "/TiVoConnect?AnchorOffset=0&Command=QueryContainer&Details=All&ItemCount=1"), "tivo", Password);
+            return GetContent(new Uri("https://" + TivoAddress + "/TiVoConnect?AnchorOffset=0&Command=QueryContainer&Details=All&ItemCount=0"), "tivo", Password);
             
         }
 
@@ -38,24 +38,9 @@ namespace TTG1
             string contents = Reader.ReadToEnd();
             XDocument testDoc = new XDocument();
             testDoc = XDocument.Parse(contents);
-           // XmlSerializer xs = new XmlSerializer(testDoc, testDoc.Root);
-           // XDocument tivoDetail = XDocument.Parse(contents);
-            var results = from q in testDoc.Descendants("Details")
-                          select new
-                          {
-                              Title = (string)q.Attribute("Title").Value,
-                              Episode = (string)q.Attribute("EpisodeTitle").Value
-                          };
-            foreach (var item in results)
-            {
-                Console.WriteLine("Title: {0}, Epsode: {1}", item.Title, item.Episode);
-            }
-
-
             string path = @"c:\temp\details.xml";
            // tivoDetail.Save(path);
             return path;
-            //return contents;
         }
 
         private static bool IgnoreCertErrorsCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)

@@ -19,7 +19,6 @@ namespace TTG1
             ReadXML(root);
 
             XmlDocument xD = new XmlDocument();
-            xD.
             string details = "";
             return details;
 
@@ -112,10 +111,10 @@ namespace TTG1
                     ReadXML(node.NextSibling);
                     break;
                 case "Details":
-                    Console.WriteLine("Node Name: " + node.Name);
+                    //Console.WriteLine("Node Name: " + node.Name);
                     if (node.HasChildNodes)
                     {
-                        Console.WriteLine("First Child Node: " + node.FirstChild.Name);
+                        //Console.WriteLine("First Child Node: " + node.FirstChild.Name);
                      //   Console.WriteLine(node.InnerText);
                         
                     }

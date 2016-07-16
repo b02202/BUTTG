@@ -1,35 +1,38 @@
-﻿<Window x:Class="TTG1.SettingsWindow"
+﻿<Window x:Name="winSettings" x:Class="TTG1.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TTG1"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="380" Width="637.614">
+        Title="SettingsWindow" Height="380" Width="309.02">
 
 
     <Grid Background="#FF232121" Margin="0,0,0,0">
         <Frame x:Name="framAddTivo" Content="Add a new Tivo:" HorizontalAlignment="Left" Height="108" Margin="10,193,0,0" VerticalAlignment="Top" Width="280" Background="#FF535252" FontWeight="Bold" Foreground="White" BorderBrush="White" BorderThickness="1"/>
 
-        <ListView x:Name="lstTivos" HorizontalAlignment="Left" Height="100" Margin="19,43,0,0" VerticalAlignment="Top" Width="258">
+        <ListView x:Name="lstTivos" HorizontalAlignment="Left" Height="100" Margin="10,43,0,0" VerticalAlignment="Top" Width="280">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Description"/>
+                    <GridViewColumn Header="Name"/>
+                    <GridViewColumn Header="IP Address"/>
+                    <GridViewColumn Header="MAK"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Label x:Name="lblTivos" Content="Tivos" HorizontalAlignment="Left" Margin="32,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.214,0.039" FontSize="14" FontWeight="Bold" ToolTip="List of current Tivos" Foreground="#FF1CF006"/>
-        <Label x:Name="lblTivoName" Content="Name of Tivo:" HorizontalAlignment="Left" Margin="19,211,0,0" VerticalAlignment="Top" Foreground="#FFF7FBF7" Width="96"/>
-        <Label x:Name="lblTivoIP" Content="IP of Tivo:" HorizontalAlignment="Left" Margin="120,211,0,0" VerticalAlignment="Top" Foreground="White" Width="75"/>
-        <Label x:Name="lblTivoMAK" Content="MAK of Tivo:" HorizontalAlignment="Left" Margin="200,211,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <TextBox x:Name="txtTivoName" HorizontalAlignment="Left" Height="23" Margin="19,234,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="96"/>
+        <Label x:Name="lblTivoName" Content="Tivo Description:" HorizontalAlignment="Left" Margin="16,211,0,0" VerticalAlignment="Top" Foreground="#FFF7FBF7" Width="99"/>
+        <Label x:Name="lblTivoIP" Content="Tivo IP:" HorizontalAlignment="Left" Margin="118,211,0,0" VerticalAlignment="Top" Foreground="White" Width="75"/>
+        <Label x:Name="lblTivoMAK" Content="Tivo MAK:" HorizontalAlignment="Left" Margin="197,211,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox x:Name="txtTivoName" HorizontalAlignment="Left" Height="23" Margin="19,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96"/>
         <TextBox x:Name="txtTivoIP" HorizontalAlignment="Left" Height="23" Margin="120,234,0,0" TextWrapping="Wrap" Text="172.17.2.231" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="txtTivoMAK" HorizontalAlignment="Left" Height="23" Margin="200,234,0,0" TextWrapping="Wrap" Text="4822977039" VerticalAlignment="Top" Width="77"/>
-        <Button x:Name="btnTestTivo" Content="Test Connection" HorizontalAlignment="Left" Margin="19,271,0,0" VerticalAlignment="Top" Width="109" Click="btnTestTivo_Click"/>
-        <Button x:Name="btnAddTivo" Content="Add" HorizontalAlignment="Left" Margin="142,271,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.824,0.488"/>
+        <Button x:Name="btnTestTivo" Content="Test Connection" HorizontalAlignment="Left" Margin="19,271,0,0" VerticalAlignment="Top" Width="176" Click="btnTestTivo_Click"/>
+        <Button x:Name="btnAddTivo" Content="Add" HorizontalAlignment="Left" Margin="200,271,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.824,0.488" Click="btnAddTivo_Click"/>
         <Button x:Name="btnOK" Content="Okay" HorizontalAlignment="Left" Margin="215,316,0,0" VerticalAlignment="Top" Width="75" Click="btnOK_Click"/>
-        <Button x:Name="btnRemoveTivo" Content="Remove Selected Tivo" HorizontalAlignment="Left" Margin="142,148,0,0" VerticalAlignment="Top" Width="133"/>
-        <TextBlock x:Name="txbOuptut" HorizontalAlignment="Left" Margin="311,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="293" Width="301" Foreground="White"/>
+        <Button x:Name="btnRemoveTivo" Content="Remove Selected Tivo" HorizontalAlignment="Left" Margin="157,148,0,0" VerticalAlignment="Top" Width="133"/>
+        <Button x:Name="btnTestTivo2" Content="Test Selected" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="142" Click="btnTestTivo_Click"/>
 
     </Grid>
 

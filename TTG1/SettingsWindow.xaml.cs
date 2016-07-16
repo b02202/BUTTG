@@ -41,9 +41,17 @@ namespace TTG1
             string contents = XML.ParseDetails(path);
             
 
-            txbOuptut.Text = contents;
+            
+            
 
+        }
 
+        private void btnAddTivo_Click(object sender, RoutedEventArgs e)
+        {
+            string ip = txtTivoIP.Text;
+            string mak = txtTivoMAK.Text;
+            string path = Tivo.GetDetails(ip, mak);
+            
         }
     }
 }
