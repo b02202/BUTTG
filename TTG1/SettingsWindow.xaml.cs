@@ -38,8 +38,11 @@ namespace TTG1
             string ip = txtTivoIP.Text;
             string mak = txtTivoMAK.Text;
             string contents = Tivo.GetDetails(ip, mak);
-            string TivoName = XML.ParseName(contents);
-            btnTestTivo.Content = "Connected to: " + TivoName;
+            //string TivoName = XML.ParseName(contents);
+            XML xmlClass = new XML(contents);
+
+            string xmlString = XML.name;
+            btnTestTivo.Content = "Connected to: " + XML.name;
 
 
 
