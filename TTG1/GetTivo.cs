@@ -36,11 +36,10 @@ namespace TTG1
             Client.Credentials = new NetworkCredential(UserName, Password);
             Reader = new StreamReader(Client.OpenRead(TivoURL));
             string contents = Reader.ReadToEnd();
-            XDocument testDoc = new XDocument();
-            testDoc = XDocument.Parse(contents);
-            string path = @"c:\temp\details.xml";
-           // tivoDetail.Save(path);
-            return path;
+            //XDocument testDoc = new XDocument();
+            //testDoc = XDocument.Parse(contents);
+            //string path = @"c:\temp\details.xml";
+            return contents;
         }
 
         private static bool IgnoreCertErrorsCallback(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)

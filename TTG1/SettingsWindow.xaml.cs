@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
-
+using System.Xml;
 
 namespace TTG1
 {
@@ -37,12 +37,14 @@ namespace TTG1
         {
             string ip = txtTivoIP.Text;
             string mak = txtTivoMAK.Text;
-            string path = Tivo.GetShowList(ip, mak);
-            string contents = XML.ParseDetails(path);
-            
+            string contents = Tivo.GetDetails(ip, mak);
+            string TivoName = XML.ParseName(contents);
+            btnTestTivo.Content = "Connected to: " + TivoName;
 
-            
-            
+
+
+
+
 
         }
 
