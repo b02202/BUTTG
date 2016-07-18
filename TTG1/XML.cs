@@ -11,119 +11,183 @@ namespace TTG1
 {
     public static class XML
     {
-        public static string ParseDetails(string path)
+
+        
+public static string ParseName(string contents)
         {
             XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(@"c:\temp\details2.xml");
+            xDoc.LoadXml(contents);
             XmlNode root = xDoc.SelectSingleNode("*");
-            ReadXML(root);
+            string name = RecurseXML(root);
+            return name;
 
-            XmlDocument xD = new XmlDocument();
+
+            //switch (root.Name)
+            //{
+            //    case "TiVoContainer":
+            //        Console.WriteLine("root Name: " + root.Name);
+            //        RecurseXML(root.FirstChild);
+            //        break;
+            //    case "Details":
+            //        if (root.HasChildNodes)
+            //        {
+            //            Console.WriteLine("root Name: " + root.Name);
+            //            RecurseXML(root.FirstChild);
+            //        }
+            //        break;
+            //    case "ContentType":
+            //        Console.WriteLine("root Name: " + root.Name);
+            //        RecurseXML(root.NextSibling);
+            //        break;
+            //    case "SourceFormat":
+            //        Console.WriteLine("root Name: " + root.Name);
+            //        RecurseXML(root.NextSibling);
+            //        break;
+            //    case "Title":
+            //        Console.WriteLine("root Name: " + root.Name);
+            //        string name = root.InnerText;
+            //        return name;
+            //    default:
+            //        break;
+            //}
+            //if (root.HasChildNodes)
+            //{
+            //    Console.WriteLine("Get Child");
+            //    RecurseXML(root.FirstChild);
+            //}
+            //if (root.NextSibling != null)
+            //{
+            //    Console.WriteLine("Get Sibling");
+            //    RecurseXML(root.NextSibling);
+            //}
+            //string def = "FT-ParseName";
+            //return def;
+        }
+
+        public static string ParseDetails(string contents)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.LoadXml(contents);
+            XmlNode root = xDoc.SelectSingleNode("*");
+
+
+
             string details = "";
             return details;
-
-
-            //////////Testing XmlNodeList, commented to test XmlElemet instead
-            //XmlNodeList xNode = xDoc.GetElementsByTagName("Item");
-            //Console.WriteLine("There are " + xNode.Count + " Items");
-            //Console.WriteLine("Enumerators: " + xNode.GetEnumerator().ToString());
-            //int i = 1;
-            //while (xNode.Count > i)
-            //{
-
-            //    Console.WriteLine(xNode. xNode.Item(i).ChildNodes.Count;
-            //    i++;
-            //}
-
-
-            /////////Testing XmlElemt, Commenting to work on Dictinary
-            //XmlElement root = xDoc.DocumentElement;
-            //XmlNodeList elemList = root.GetElementsByTagName("Title");
-            //IEnumerator ienum = elemList.GetEnumerator();
-            //while (ienum.MoveNext())
-            //{
-            //    XmlNode title = (XmlNode)ienum.Current;
-            //    Console.WriteLine(title.InnerText);
-            //}
-
-            //var results = from q in TivoInfo2.Descendants("Item")
-            //              select new
-            //              {
-            //                  Title = q.Element("Title").Value,
-            //                  Episode = q.Element("EpisodeTitle").Value
-            //              };
-            //foreach (var item in results)
-            //{
-            //    Console.WriteLine("Title: {0}, Epsode: {1}", item.Title, item.Episode);
-            //}
-
         }
 
-        public static void ReadXML(XmlNode root)
+        public static string RecurseXML(XmlNode rootNode)
         {
-            if (root is XmlElement)
-            {
-                Console.WriteLine("Current Root Namne: " + root.Name + " = " + root.InnerText);
-                //Console.WriteLine("Value: " + root.Attributes[root.Name].Value);
-                DoWork(root);
 
-                if (root.HasChildNodes)
+            
+            if (rootNode is XmlElement)
+            {
+                //Console.WriteLine("Current Root Namne: " + rootNode.Name + " = " + rootNode.InnerText);
+                string name = GetName(rootNode);
+                if (name != null)
+                {
+                    return name;
+                }
+
+                if (rootNode.HasChildNodes)
                 {
                  //   Console.WriteLine("Get Child");
-                    ReadXML(root.FirstChild);
+                    RecurseXML(rootNode.FirstChild);
                 }
-                if (root.NextSibling != null)
+                if (rootNode.NextSibling != null)
                 {
                  //   Console.WriteLine("Get Sibling");
-                    ReadXML(root.NextSibling);
+                    RecurseXML(rootNode.NextSibling);
                 }
             }
-            else if (root is XmlText)
+            else if (rootNode is XmlText)
+            {
+                RecurseXML(rootNode.NextSibling);
+            }
+            else if (rootNode is XmlComment)
             { }
-            else if (root is XmlComment)
-            { }
+            //string def = "FT-RecurseXML";      /////is this really what we are returning
+            return "didn't work";
+
         }
 
-        private static void DoWork(XmlNode node)
+        private static string GetName(XmlNode node)
         {
+            string named;
+            if (node.Name != "Title")
+            {
+                if (node.HasChildNodes && node.FirstChild.Name == "Details")
+                {
+                    //   Console.WriteLine("Get Child");
+                    RecurseXML(node.FirstChild);
+                }
+                else if (node.Name == "Details")
+                {
+                    RecurseXML(node.FirstChild);
+                }
+                else if (node.Name == "ContentType")
+                {
+                    RecurseXML(node.NextSibling);
+                }
+                else if (node.Name == "SourceFormat")
+                {
+                    RecurseXML(node.NextSibling);
+                }
+                //if (node.NextSibling == null)
+                //{
+                //    //   Console.WriteLine("Get Sibling");
+                //    name = "Did NOT Connect";
+                //}
+            }
+            if (node.Name=="Title")
+            {
+                named = node.InnerText;
+                return named;
+            }
+            return "WHY??";
             //if (node.Name == "TiVoContainer")
             //{
-            //    Console.WriteLine("Found Root TiVoContainer");
-            //    ReadXML(node.NextSibling);
+            //    Console.WriteLine("Node Name: " + node.Name + " getting First Child: " + node.FirstChild.Name);
+            //    RecurseXML(node.FirstChild);
             //}
-            //if (node.Name == "Details" && node.LastChild.ToString() == "/NowPlaying")
+            //else if (node.Name == "Details")
             //{
-            //    Console.WriteLine("Found Details - Now Playing");
-            //    ReadXML(node.NextSibling);
+            //    Console.WriteLine("Node Name: " + node.Name + " getting First Child: " + node.FirstChild.Name);
+            //    RecurseXML(node.NextSibling);
             //}
-
-            //if (node.Attributes["Title"] != null)
+            //else if (node.Name == "ContentType")
             //{
-            //    Console.WriteLine("Title: " + node.ParentNode.ParentNode.Attributes["Title"].Value);
-            //    Console.WriteLine("Episode Title: " + node.ParentNode.ParentNode.Attributes["EpisodeTitle"].Value);
-            //    Console.WriteLine(".....");
+            //    Console.WriteLine("Node Name: "+ node.Name + " getting Next Sibling: " + node.NextSibling.Name);
+            //    RecurseXML(node.NextSibling);
             //}
 
-            switch (node.Name)
-            {
-                case "TiVoContainer":
-                    Console.WriteLine("Node Name: "+ node.Name);
-                    ReadXML(node.NextSibling);
-                    break;
-                case "Details":
-                    //Console.WriteLine("Node Name: " + node.Name);
-                    if (node.HasChildNodes)
-                    {
-                        //Console.WriteLine("First Child Node: " + node.FirstChild.Name);
-                     //   Console.WriteLine(node.InnerText);
-                        
-                    }
-                    ReadXML(node.NextSibling);
-                    break;
 
-                default:
-                    break;
-            }
+
+
+            //case "TiVoContainer":
+            //Console.WriteLine("TiVo Container, getting Next Sibling:" + node.NextSibling);
+            //RecurseXML(node.NextSibling);
+            //    break;
+            //case "Details":
+            //    Console.WriteLine("Node Name: " + node.Name);
+            //    if (node.HasChildNodes)
+            //    {
+            //        RecurseXML(node.FirstChild);
+            //    }
+            //    break;
+            //case "ContentType":
+            //    Console.WriteLine("Node Name: " + node.Name);
+            //    RecurseXML(node.NextSibling);
+            //    break;
+            //case "SourceFormat":
+            //    Console.WriteLine("Node Name: " + node.Name);
+            //    RecurseXML(node.NextSibling);
+            //    break;
+            //case "Title":
+            //    Console.WriteLine("Node Name: " + node.Name);
+            //    name = node.InnerText;
+            //    return name;
+            //default:
 
         }
     }
