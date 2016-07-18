@@ -11,7 +11,7 @@ namespace TTG1.JSONUtil
     class JSONParseUtility
     {
 
-        public static string JSONText { get; set; }
+        public static JObject JSONText { get; set; }
         public static XmlDocument XMLDoc { get; set; }
 
         // Default Constructor only invokes object initializer processing - NO PARAMS

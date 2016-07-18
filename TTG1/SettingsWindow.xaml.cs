@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using System.Xml;
+using TTG1.JSONUtil;
+using Newtonsoft.Json.Linq;
 
 namespace TTG1
 {
@@ -40,15 +42,8 @@ namespace TTG1
             string contents = Tivo.GetDetails(ip, mak);
             //string TivoName = XML.ParseName(contents);
             XML xmlClass = new XML(contents);
-
-            string xmlString = XML.name;
             btnTestTivo.Content = "Connected to: " + XML.name;
-
-
-
-
-
-
+            
         }
 
         private void btnAddTivo_Click(object sender, RoutedEventArgs e)
@@ -56,6 +51,21 @@ namespace TTG1
             string ip = txtTivoIP.Text;
             string mak = txtTivoMAK.Text;
             string path = Tivo.GetDetails(ip, mak);
+            
+        }
+
+        private void btnTestTivo2_Click(object sender, RoutedEventArgs e)
+        {
+            string ip = txtTivoIP.Text;
+            string mak = txtTivoMAK.Text;
+            string contents = Tivo.GetDetails(ip, mak);
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.LoadXml(contents);
+            JSONParseUtility JPU = new JSONParseUtility(xDoc);
+            var JSONData = JSONParseUtility.JSONText;
+            Console.WriteLine("JSONData: {0}", JSONData);
+
+            JObject jsonObject = new JObject();
             
         }
     }
