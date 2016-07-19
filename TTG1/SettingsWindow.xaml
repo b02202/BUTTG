@@ -11,7 +11,7 @@
     <Grid Background="#FF232121" Margin="0,0,0,0">
         <Frame x:Name="framAddTivo" Content="Add a new Tivo:" HorizontalAlignment="Left" Height="108" Margin="10,193,0,0" VerticalAlignment="Top" Width="280" Background="#FF535252" FontWeight="Bold" Foreground="White" BorderBrush="White" BorderThickness="1"/>
 
-        <ListView x:Name="lstTivos" HorizontalAlignment="Left" Height="100" Margin="10,43,0,0" VerticalAlignment="Top" Width="280">
+        <ListView x:Name="lstTivos" HorizontalAlignment="Left" Height="100" Margin="10,43,0,0" VerticalAlignment="Top" Width="280" SelectionChanged="lstTivos_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Description"/>

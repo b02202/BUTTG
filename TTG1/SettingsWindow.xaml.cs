@@ -35,28 +35,30 @@ namespace TTG1
 
         private void btnTestTivo_Click(object sender, RoutedEventArgs e)
         {
+            //Load Variables from test boxes
             string ip = txtTivoIP.Text;
             string mak = txtTivoMAK.Text;
+            //Get stream of data from TiVo
             string contents = Tivo.GetDetails(ip, mak);
-            //string TivoName = XML.ParseName(contents);
+            //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
-
-            string xmlString = XML.name;
+            //Change button text to indicate connection state
             btnTestTivo.Content = "Connected to: " + XML.name;
-
-
-
-
-
-
         }
 
         private void btnAddTivo_Click(object sender, RoutedEventArgs e)
         {
+            //Load Variables from test boxes
             string ip = txtTivoIP.Text;
             string mak = txtTivoMAK.Text;
-            string path = Tivo.GetDetails(ip, mak);
-            
+            string tivoName = txtTivoName.Text;
+            //Get stream of data from TiVo
+            string contents = Tivo.GetDetails(ip, mak);
+            //Parse stream into XML - Setting XML.name in the process
+            XML xmlClass = new XML(contents);
+            //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
+            //////////////UGHHHHH, GOING CRAZY!!!!!!!!!!!!!!
         }
+
     }
 }

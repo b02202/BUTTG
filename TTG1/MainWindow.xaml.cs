@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+
+
 
 namespace TTG1
 {
@@ -27,16 +30,13 @@ namespace TTG1
 
         private void mnuSettings_Click(object sender, RoutedEventArgs e)
         {
+            
             //MenuItem myMenuItem = (MenuItem)sender;
             //string name = myMenuItem.Name;
             //string type = myMenuItem.GetType().Name;
             //txtOutput.Text = "You clicked a " + type + " named " + name;
-
             Window WinSet = new SettingsWindow();
             WinSet.Show();
-            
-           
-
         }
 
         private void mnuExit_Click(object sender, RoutedEventArgs e)
