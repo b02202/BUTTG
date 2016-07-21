@@ -1,0 +1,2721 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./tuning_files/filelist.xml">
+<title>Tuning Comskip</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Erik Kaashoek</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Erik Kaashoek</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>92</o:TotalTime>
+  <o:Created>2006-04-01T15:13:00Z</o:Created>
+  <o:LastSaved>2006-04-01T15:13:00Z</o:LastSaved>
+  <o:Pages>13</o:Pages>
+  <o:Words>4345</o:Words>
+  <o:Characters>24767</o:Characters>
+  <o:Company>Philips</o:Company>
+  <o:Version>9.7616</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DoNotHyphenateCaps/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>9.35 pt</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>9.35 pt</w:DrawingGridVerticalSpacing>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:DrawingGridHorizontalOrigin>57.6 pt</w:DrawingGridHorizontalOrigin>
+  <w:DrawingGridVerticalOrigin>72 pt</w:DrawingGridVerticalOrigin>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-font-kerning:0pt;}
+h2
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:Arial;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:Arial;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:48.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:96.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in .8in 1.0in .8in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-header:url("./tuning_files/header.htm") h1;
+	mso-footer:url("./tuning_files/header.htm") f1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:891577778;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1858476860 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;
+	mso-bidi-font-family:"Times New Roman";}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2049"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h1><a name="_Toc121774672">A short guide to tuning Comskip</a></h1>
+
+<p class=MsoNormal>By Erik.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1><a name="_Toc121774673">Contents:</a></h1>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><!--[if supportFields]><span
+style='font-family:Arial'><span style='mso-element:field-begin'></span><span
+style="mso-spacerun: yes"> </span>TOC \o &quot;1-3&quot; \h \z <span
+style='mso-element:field-separator'></span></span><![endif]--><span
+class=MsoHyperlink><a href="#_Toc121774672">A short guide to tuning Comskip<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774672 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370032000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774673">Contents:<span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774673 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370033000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774674">Introduction<span style='color:
+windowtext;display:none;mso-hide:screen;text-decoration:none;text-underline:
+none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774674 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370034000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774675">General strategies<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774675 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>2</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370035000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774676">Setting up the test environment.<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774676 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>2</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370036000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774677">The log file<span style='color:
+windowtext;display:none;mso-hide:screen;text-decoration:none;text-underline:
+none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774677 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>3</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370037000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774678">Starting the tuning: the black
+frame detection.<span style='color:windowtext;display:none;mso-hide:screen;
+text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774678 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>3</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370038000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774679">Tuning the max_volume.<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774679 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>5</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600370039000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774680">Setting the non_uniformity<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774680 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>6</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380030000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774681">Verifying the settings.<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774681 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>6</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380031000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774682">Using the short.csv file<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774682 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>6</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380032000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774683">Using aspect ratio based cutting<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774683 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>7</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380033000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774684">Tuning the Logo detection<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774684 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>7</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380034000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774685">Verifying the Block list<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774685 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>9</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380035000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774686">Tuning the heuristics<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774686 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>9</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380036000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774687">Final commercial list generation<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774687 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>10</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380037000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774688">Trying different settings<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774688 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>11</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380038000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774689">Reducing the commercial size<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774689 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>11</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600380039000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774690">Automated setting of certain
+parameters<span style='color:windowtext;display:none;mso-hide:screen;
+text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774690 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>12</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600390030000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774691">Using the optimized Comskip.ini<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774691 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>12</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600390031000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc121774692">Verifying Comskip output during
+normal execution<span style='color:windowtext;display:none;mso-hide:screen;
+text-decoration:none;text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc121774692 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>12</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F0063003100320031003700370034003600390032000000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoNormal><!--[if supportFields]><span style='font-family:Arial'><span
+style='mso-element:field-end'></span></span><![endif]--><span style='font-family:
+Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774674">Introduction</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Before the tuning of Comskip
+can start it is essential to understand the basic operation of Comskip. Comskip
+reads and decodes a recorded mpeg file based on instructions Comskip reads from
+a so called ini file. The recording is analyzed on various characteristics such
+as black frames, silences and changes in aspect ratio.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Based on this information
+Comskip segments the recording in blocks and using heuristics, together with
+additional information such as the presence of logo, the scene change rate,
+Close Captioning information and other information sources Comskip tries to
+determine what blocks of the recording are to be characterized as commercials. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>This process can only be
+successful under a number of conditions. The information to be used for the
+segmentation must be available in the recording. When, for example, the
+recording contains insufficient or too many black frames the segmentation
+process has a high chance to fail. It is therefore essential to instruct
+Comskip how to recognize the various segmentation information sources to ensure
+an optimal result. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>However, Comskip may not be
+able to deliver acceptable results on certain recordings from certain
+broadcasters because the required information is simply not available in the
+broadcast. The purpose of the tuning is therefore to extract the maximum of
+information from the recording to enable Comskip to do the best possible job.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774675">General strategies</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>A simple strategy is to
+install Comskip and use the comskip.ini file available in the download in the
+PVR system and let the PVR do its recording. Afterwards, when watching the
+recording enhanced by the information from Comskip the results can be judged
+and if not as required some changes to the ini file can be made. The impact of
+these changes can be judged after the next recording is done.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>This strategy works if only
+limited adaptations are required. It is not the right approach to get the best
+results for specific broadcasting styles.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>It is therefore recommended
+to use a more elaborate strategy to optimize Comskip.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774676">Setting up the test environment.</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Create a separate folder and
+copy the files from the downloaded Comskip zip file into this directory.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Then copy a number of
+relevant recordings into this directory and rename them to appropriate short
+names.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>There should now be the
+following files in the folder. Comskip.exe, comskip.ini, comskip.dictionary and
+a number of mpeg files. Lets name them for this guide as short.mpg, long.mpg,
+etc....<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>One mpeg files should preferably
+not be very big, about 10 minutes, and contain a mix of show and commercial.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>This we will call short.mpg.
+A second mpeg should be a full recording of about one hour containing a typical
+sequence of show segments mixed with commercials. This will be called long.mpg.
+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Now edit the comskip.ini
+file. Comskip is rather picky on how you format the ini file. No spaces before
+of after the '=' are allowed. Multiple occurrences of any setting can exist
+anywhere in the file but only the first will be used. There is no way to
+'comment out' a setting.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The following settings
+should be present when starting the tuning, each on a separate line: <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>verbose=10<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>detect_method=47<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>delete_logo_file=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>intelligent_brightness=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>output_framearray=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>output_debugwindow=1<span
+style='mso-tab-count:1'>   </span>; Only for tuning, to be replaced later<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>non_uniformity=1000<span
+style='mso-tab-count:1'>    </span><span style='mso-tab-count:1'>     </span>;
+Only for tuning, to be replaced later<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_volume=1000<span
+style='mso-tab-count:1'>    </span><span style='mso-tab-count:1'>     </span>;
+Only for tuning, to be replaced later<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Now we need to run Comskip
+on the first mpg file. For the first part of the tuning we will use short.mpg.
+To run Comskip on the mpeg we create a shortcut icon on the desktop to
+Comskip.exe. Drag and drop short.mpg on the Comskip icon and watch the processing
+being done.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>First a console window opens
+and some initial logging appears. Then the debug window opens. To understand
+the content of the debugwindow please read debugwindow description file.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The frame number in the top
+left corner should start at 1 and increment with jumps till the last frame
+number.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Once Comskip reaches the
+final frame there will be some more logging in the console window and the
+debugwindow will jump to the first frame. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Comskip can now be
+terminated by closing the Comskip console window.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The test folder will contain
+a number of new files, each with its specific content.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The file short.log contains
+the logging output of the last comskip run.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The file short.txt contains
+the start end ending frame numbers of the identified commercials, if any.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The file short.csv contains
+information on brightness, volume, etc... one line per frame. The first line
+contains the descriptive name of the information. The last figure on the first
+line is the frame rate times hundred as read from the mpeg file.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The file short.logo.txt
+contains the logo recognition mask if a logo has been found.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774677">The log file</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Now use your favorite editor
+or text file viewer and open the log file short.log.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The first part of the log
+file lists some essentials of the comskip run. Then there is information on the
+frame per frame scanning starting with the line<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>First Frame<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>After all frames has been
+scanned there is a line <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>Finished scanning
+file.<span style="mso-spacerun: yes">  </span>Starting to build Commercial
+List.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>After this line the global
+processing with closing frame groups and cleaning up information.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Then the recording is
+segmented in blocks starting with a line such as<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>Creating block 0
+From 1 (1) to 350 (348) because of Blackframe with 0 head and 2 tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Then some additional small
+cleaning up and information generation and the Fuzzy Logic scoring starts with<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>Fuzzy scoring of the
+blocks<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>After the scoring there is
+the information on the detected commercials starting with<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><span
+style='mso-tab-count:1'>     </span>Initial Commercial List<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>And finally the list of
+blocks with their details starting with<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>Block list after
+weighing<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774678">Starting the tuning: the black frame detection.</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Five parameters determine
+the black frame detection process. They are<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_avg_brightness=20<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>test_brightness=40<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_brightness=60<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>non_uniformity=1000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_volume=1000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>intelligent_brightness=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The first parameter to look
+at is max_avg_brightness, in general test_brightness should be 20 above
+max_avg_brightness and max_brightness should be again 20 above test_brightness.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>A frame is a candidate black
+frame when the average of the brightness of its pixels if below
+max_avg_brightness. It is therefore required to identify the black level in the
+recording and set the max_ avg_brightness somewhat above this level. To do this
+look in the log file at the list of black frames just below <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>Black Frame List<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>There should be lines such
+as<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><span
+style="mso-spacerun: yes"> </span>14<span style='mso-tab-count:1'>  </span>
+16776<span style='mso-tab-count:1'>     </span> 16<span style='mso-tab-count:
+1'>   </span><span style="mso-spacerun: yes">    </span>35<span
+style='mso-tab-count:1'>   </span><span style="mso-spacerun: yes">    </span>77<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Where 16776 is the frame
+number, 16 the brightness, 35 the uniformity and 77 the volume. If there are no
+black frames the max_avg_brightness should be increased with steps of 5,
+together with test_brightness and max_brightness. Rerun Comskip on short.mpg
+after each increase.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Look at the minimum
+brightness in the black frame list that should occur a number of times, and set
+max_avg_brightness to that level plus five. Rerun Comskip to verify the correct
+setting. Use the debugwindow to verify the correctness. Use the ‘n’ key to jump
+to each next black frame and use the cursor keys to scan to the right to verify
+if a number of the frames behind the current position are indeed black. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Be sure to set
+test_brightness and max_brightness to respective 20 and 40 above
+max_avg_brightness.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When one single pixel in a
+frame has brightness above max_brightness then that frame will not be regarded
+as black. When more then 5 pixels on a line have a brightness above
+test_brightness the frame will not be regarded as black.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The detection of the black
+bars used for the aspectratio calculation uses the same settings so when
+short.mpg contains parts with different aspectratios is easy to see in the
+debugwindow if the processing is correct.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Sometimes there is something
+inside the recording that needs to be ignored. One possibility is to ignore a
+border around the picture. This is controlled by<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>border=10<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The default border is 10.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Another option is to ignore
+only a part at the bottom of the video. This is useful when the broadcast
+contains tickertape at the bottom. The controlling parameter specifies the
+number of pixels at the bottom to ignore as:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>ticker_tape=120<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The default is 0, the
+setting can be checked in the debugwindow because the part of the video that
+will be cancelled out is shown as black.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774679">Tuning the max_volume.</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Black frames with a volume
+above max_volume will be removed from the black frame list before the final
+black frame list is shown. This is shown in the log file with lines such as <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>391 - Removing black
+frame 41319, from black frame list because volume 1655 is more than 600,
+brightness 16, uniform 1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Volume levels of –1 signal
+that Comskip was unable to match the mpeg sound decoding with the picture
+decoding for that specific frame so these volumes should be ignored.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Key is to identify the
+volume level that is regarded as silence. This is never at zero but could be
+anywhere between 10 and 500 depending on the broadcast<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Some sequences of subsequent
+black frames in the black frame list possibly show the volume going down,
+remain for some frames at a low level and then again going up. <o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:Arial'>Below you can find a typical
+sequence from the black frame list<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1 style='mso-pagination:widow-orphan lines-together;page-break-after:
+avoid'><span style='font-family:"Courier New"'>1076<span style='mso-tab-count:
+1'>     </span>165202<span style='mso-tab-count:1'>   </span> 16<span
+style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">   </span>148<span
+style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">   </span>178<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1077<span
+style='mso-tab-count:1'>     </span>165203<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">  
+</span>141<span style='mso-tab-count:1'>  </span><span style="mso-spacerun:
+yes">   </span>104<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1078<span
+style='mso-tab-count:1'>     </span>165204<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">  
+</span>148<span style='mso-tab-count:1'>  </span><span style="mso-spacerun:
+yes">    </span>97<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1079<span
+style='mso-tab-count:1'>     </span>165205<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">  
+</span>110<span style='mso-tab-count:1'>  </span><span style="mso-spacerun:
+yes">    </span>90<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1080<span
+style='mso-tab-count:1'>     </span>165206<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">  
+</span>105<span style='mso-tab-count:1'>  </span><span style="mso-spacerun:
+yes">    </span>90<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1081<span
+style='mso-tab-count:1'>     </span>165207<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">   
+</span>95<span style='mso-tab-count:1'>   </span><span style="mso-spacerun:
+yes">    </span>90<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1082<span
+style='mso-tab-count:1'>     </span>165208<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">   
+</span>78<span style='mso-tab-count:1'>   </span><span style="mso-spacerun:
+yes">    </span>90<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1083<span
+style='mso-tab-count:1'>     </span>165209<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">   
+</span>72<span style='mso-tab-count:1'>   </span><span style="mso-spacerun:
+yes">    </span>90<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1084<span
+style='mso-tab-count:1'>     </span>165210<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">   
+</span>38<span style='mso-tab-count:1'>   </span><span style="mso-spacerun:
+yes">    </span>90<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1085<span
+style='mso-tab-count:1'>     </span>165211<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">   
+</span>48<span style='mso-tab-count:1'>   </span><span style="mso-spacerun:
+yes">    </span>90<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1086<span
+style='mso-tab-count:1'>     </span>165212<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">    
+</span>4<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">    </span>78<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1087<span
+style='mso-tab-count:1'>     </span>165213<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">    
+</span>0<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">    </span>78<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1088<span
+style='mso-tab-count:1'>     </span>165214<span style='mso-tab-count:1'>   </span>
+15<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">    
+</span>0<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">    </span>75<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1089<span
+style='mso-tab-count:1'>     </span>165215<span style='mso-tab-count:1'>   </span>
+15<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">    
+</span>0<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">    </span>75<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1090<span
+style='mso-tab-count:1'>     </span>165216<span style='mso-tab-count:1'>   </span>
+16<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">    
+</span>0<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">    </span>75<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-family:"Courier New"'>1091<span
+style='mso-tab-count:1'>     </span>165217<span style='mso-tab-count:1'>   </span>
+15<span style='mso-tab-count:1'>  </span><span style="mso-spacerun: yes">    
+</span>0<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">    </span>75</span><span style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>After frame </span><span
+style='font-family:"Courier New"'>165214 </span><span style='font-family:Arial'>the
+final black level is reached with brightness of 15, uniform of 0 and volume of
+75.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The lowest volume level that
+reoccurs on more then one frame sequence is the silence level. The max_volume
+level should be set at about four times the silence level. There may be black
+frame sequences that do not show the low volume level of silence but remain at
+substantial higher volume levels. These sequences should not be regarded as
+having silence and the max_volume level can be set below these levels to
+effectively remove them from the black frame list.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Below you will find an
+example from the black frame list where the frames are perfectly black
+(brightness is 16 and uniformity is below 5) but the sound level is too high to
+be silence.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>193<span
+style='mso-tab-count:1'>  </span> 82467<span style='mso-tab-count:1'>     </span>
+16<span style='mso-tab-count:1'>   </span><span style="mso-spacerun: yes">    
+</span>3<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">   </span>537<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>194<span
+style='mso-tab-count:1'>  </span> 82468<span style='mso-tab-count:1'>     </span>
+16<span style='mso-tab-count:1'>   </span><span style="mso-spacerun: yes">    
+</span>1<span style='mso-tab-count:1'>    </span><span style="mso-spacerun:
+yes">   </span>537</span><span style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Acceptable max_volume levels
+could be in the range of 250 up to 1000.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Again the debugwindow can be
+used to visually verify the alignment of the black frames and the silences. Use
+the ‘a’ key to jump to the next block boundary and use the cursor key to verify
+if the frames behind the current position indeed do have a black frame with
+silence. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774680">Setting the non_uniformity</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Black frames with low
+brightness and silence do normally also have a low level of non_uniformity,
+possibly as low as zero. The non_uniformity level is used to recognize frames
+with uniform brightness, as these could also be block separators. To set the
+non_uniformity level look again at the black frame list just like what was done
+for the max_volume but now for the uniformity. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Acceptable levels for
+non_uniformity could be in the range of 250 up to 1000. However if you record
+on low quality or have a very high noise level you may have to go up to 2000.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774681">Verifying the settings.</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Start Comskip with the
+adjusted setting on long.mpg and manually verify the black frame detection by
+using the 'n' and the 'p' keys to step through the detected black frames using
+the debugwindow.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When no black frame is
+detected between certain segments use the arrow keys to step frame by frame
+through the transition. Look at the detected values behind the frame number in
+the upper left corner and verify that processing done as expected.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774682">Using the short.csv file</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>For those that have access
+to spreadsheet software such as excel there is also another way to find the
+right level.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>After Comskip has been run
+on short.mpg there appears a short.csv file in the test folder. Now open this
+file with your spreadsheet software.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The first part of the
+spreadsheet looks like this<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<table border=0 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>frame</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>brightness</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>scene_change</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>logo</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>uniform</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>sound</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>minY</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>MaxY</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>ar_ratio</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>goodEdge</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><span style='font-size:8.0pt;font-family:Arial'>isblack</span><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>2500</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>-1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>2</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>64</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>27177</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>-1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>3</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>64</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>480</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>27259</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1618</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>4</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>64</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>475</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>27327</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1482</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>5</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>64</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>475</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>27310</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>2759</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>6</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>64</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>475</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>27285</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1026</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>7</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>64</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>480</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>27353</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>2291</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:12.75pt'>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>8</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>64</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>475</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>1</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>27365</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>2771</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>10</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>566</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>130</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>495</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal align=right style='text-align:right'><span
+  style='font-size:8.0pt;font-family:Arial'>0</span><span style='font-size:
+  8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td nowrap valign=bottom style='padding:.75pt .75pt 0in .75pt;height:12.75pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-size:8.0pt;font-family:Arial;mso-fareast-font-family:"Arial Unicode MS";
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Now select the cell just
+below brightness and sort the sheet in ascending order on brightness (in excel
+click the a/z button on the toolbar or select data/sort from the menu). The
+frames with the lowest brightness will appear at the top of the list and it is
+easy to see what the black level is. Do the same for the volume (below the word
+sound) to find the silence level.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>To facilitate this process
+one can download a large Comskip.xls files to be used as a template for more
+detailed analysis. Copy the short.csv from the open spreadsheet tab (select the
+whole sheet and then Copy) and Paste it on the input_data sheet (select cell A1
+and Paste). Now it is possible to use the autofilter on the input_data sheet
+and to look at the two graphs on the other sheets. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774683">Using aspect ratio based cutting</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Comskip can, next to black
+frame based cut points, also generate cutpoints when the aspect ratio changes.
+This optional feature is controlled by<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>cut_on_ar_change=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>If this is set to 1 Comskip
+will segment the recording also on changes on aspect ratio. Whether this is a
+good thing largely depends on broadcast style and personal preferences. Cutting
+on aspect ratio changes is automatically disabled when insufficient logo is
+found and will only happen in segments where no logo is found.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774684">Tuning the Logo detection</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>The presence of logo on a
+certain segment of the recording guides the heuristics towards interpreting
+that segment as show. It is therefore important to have good logo detection.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Logo detection is a very
+complicated process with a large number of tunable parameters. It is therefore
+advised not to modify most of these parameters. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Only when there are multiple
+slightly different logo’s in the broadcast and Comskip fails to see the
+difference between them it is advised to set<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>aggressive_logo_rejection=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Some shows have multiple
+logos. When all logos are at the top or at the bottom of the screen there is no
+problem. However, when the logo's are on diagonal sides of the screen Comskip
+will not accept the logo as valid. A possible way to solve this is to set<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>subtitles=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>This will instruct Comskip
+not to search for logos at the bottom of the screen.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When Comskip is started and
+it cannot find a logo file such as short.logo.txt it will start to scan for a
+logo after 1000 frames. You can change this by setting give_up_logo_search to
+another value such as<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>give_up_logo_search=2000<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>In the debugwindow you can
+see the appearance of pixels that are candidate for the logo mask. The maximum
+fraction of the screen size that Comskip accepts as a valid logo is defined by:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>logo_max_percentage_of_screen
+=0.1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>This value should be
+acceptable in most cases but can be increase to 0.35 if needed.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Once the logo has been
+identified Comskip saves the learned logo edge pixels and start again from the
+beginning. This can be disabled for slightly faster processing but this is not
+recommended.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When Comskip has learned the
+logo it will track the presence of logo as shown in the logo rectangle and in
+the black bar in the Frame bar at the bottom of the debugwindow. The fraction
+of edge pixels that should match the mask is defined by<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>logo_threshold=0.70<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When too many false
+positives are detected this value can be increase in steps of 0.05 till
+0.95.<span style="mso-spacerun: yes">  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When one logo block was
+found and after that a long time of no logo, Comskip assumes it has learned a
+wrong logo and restarts its learning from well within the recording. When after
+this a logo is found Comskip will restart for a second time. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The following setting
+controls the deletion of the logo file<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>delete_logo_file=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When set to 1 the learned
+logo file will be deleted after processing is finished.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When no logo is found after
+about 12 minutes in the show Comskip will give up logo detection and assumes no
+logo at all.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The amount of logo over time
+will tell Comskip how to interpret the presence of logo. If more then 50% logo
+is found Comskip assumes logo to be present on show only. If less then 32% logo
+is found but more then 15% Comskip assumes logo to be present on commercials
+only and the logo logic is reversed.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>If the amount of logo
+detected is above a certain threshold defined by <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>logo_percentile=0.92<o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>it is assumed there is
+always logo and the logo heuristics will also be disabled.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When the logo detection is
+assumed to be robust it can be used to suppress false black frames from being
+detected. This is enabled with the following setting<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>connect_blocks_with_logo=1<o:p></o:p></span></p>
+
+<p class=MsoToc1><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>This will connect two blocks
+into one block if there is logo present at the end of the first block and at
+the beginning of the second block. An example of a line signaling the deletion
+of a block due to this connection process is<o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>Joining blocks 20
+and 21 at frame 149986 because they both have a logo</span>.</p>
+
+<h1><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>It is also possible to
+create additional pseudo blackframes some seconds after a logo disappears or
+before a logo appears The following line in the ini file will create a pseudo
+blackframe 6 seconds after the logo disappears and 8 seconds before the logo appears.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>after_logo=6<o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>before_logo=8<o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Sometimes the logo continues
+too long and only disappears during the start of the commercial. This can be
+solved by shrinking the duration of the logo by using<o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>shrink_logo=10<o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoToc1><span style='font-family:Arial'>The effect on the processing
+is that the logo is assumed to appear 10 seconds later than reality and to
+disappear 10 seconds before reality.<span style="mso-spacerun: yes">  </span>As
+long as there are no black frames just before the end of the show there is no
+need to be very precise on this setting<o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1><a name="_Toc121774685">Verifying the Block list</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Using all the information
+gathered from the recoding Comskip will generate a so call Block List. This
+block list is directly after the black frame list.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>An example of a block list:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 0 From 1 (1) to 2074 (2071) because of Blackframe with 0 head and 3 tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 1 From 2075 (2078) to 2339 (2339) because of Blackframe with 3 head and 0
+tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 2 From 2340 (2341) to 2509 (2508) because of Blackframe with 1 head and 1
+tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 3 From 2510 (2511) to 2830 (2827) because of Blackframe with 1 head and 3
+tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 4 From 2831 (2834) to 3651 (3650) because of Aspectratio with 3 head and
+1 tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 5 From 3652 (3653) to 5279 (5276) because of Blackframe with 1 head and 3
+tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 6 From 5280 (5283) to 5813 (5810) because of Blackframe with 3 head and 3
+tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 7 From 5814 (5817) to 6266 (6265) because of Aspectratio with 3 head and
+1 tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 8 From 6267 (6268) to 6890 (6889) because of Aspectratio with 1 head and
+1 tail<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Creating
+block 9 From 6891 (6892) to 10306 (10306) because of Blackframe with 1 head and
+0 tail</span><span style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The reason for segmentation
+to the next block is indicated as Blackframe or Aspectratio<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>After the logo processing
+certain blocks may have been connected as described above leading to a reduced
+block list. The final block list can be found at the very end of the log file.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>Block
+list after weighing<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'>----------------------------------------------------<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes"> </span>#<span style="mso-spacerun: yes">    
+</span>sbf<span style="mso-spacerun: yes">  </span>bs<span style="mso-spacerun:
+yes">   </span>be<span style="mso-spacerun: yes">     </span>fs<span
+style="mso-spacerun: yes">     </span>fe<span style="mso-spacerun: yes">   
+</span>sc<span style="mso-spacerun: yes">     </span>len<span
+style="mso-spacerun: yes">    </span>scc<span style="mso-spacerun: yes">   
+</span>scr<span style="mso-spacerun: yes">  </span>cmbnd<span
+style="mso-spacerun: yes">   </span>ar<span style="mso-spacerun: yes">    
+</span>cut<span style="mso-spacerun: yes">  </span>bri<span
+style="mso-spacerun: yes">  </span>logo<span style="mso-spacerun: yes"> 
+</span>stdev<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>0)+<span style="mso-spacerun: yes">   
+</span>3<span style="mso-spacerun: yes">   </span>0<span style="mso-spacerun:
+yes">    </span>3<span style="mso-spacerun: yes">      </span>1<span
+style="mso-spacerun: yes">   </span>2074<span style="mso-spacerun: yes">  
+</span>0.18<span style="mso-spacerun: yes">   </span>82.920<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>0<span
+style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun: yes">      
+</span>b<span style="mso-spacerun: yes">   </span>61<span style="mso-spacerun:
+yes">  </span>0.83<span style="mso-spacerun: yes">    </span>120<span
+style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>1)-<span style="mso-spacerun: yes">   
+</span>3<span style="mso-spacerun: yes">   </span>3<span style="mso-spacerun:
+yes">    </span>0<span style="mso-spacerun: yes">   </span>2075<span
+style="mso-spacerun: yes">   </span>2339<span style="mso-spacerun: yes">  
+</span>1.78<span style="mso-spacerun: yes">  </span><span style="mso-spacerun:
+yes"> </span>10.560<span style="mso-spacerun: yes">   </span>0<span
+style="mso-spacerun: yes">    </span>0.00<span style="mso-spacerun: yes">    
+</span>2<span style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun:
+yes">       </span>b<span style="mso-spacerun: yes">  </span>101<span
+style="mso-spacerun: yes">  </span>0.00<span style="mso-spacerun: yes">    
+</span>98<span style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>2)-<span style="mso-spacerun: yes">   
+</span>2<span style="mso-spacerun: yes">   </span>1<span style="mso-spacerun:
+yes">    </span>1<span style="mso-spacerun: yes">   </span>2340<span
+style="mso-spacerun: yes">   </span>2509<span style="mso-spacerun: yes">  
+</span>1.78<span style="mso-spacerun: yes">    </span>6.760<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>2<span
+style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun: yes">      
+</span>b<span style="mso-spacerun: yes">   </span>86<span style="mso-spacerun:
+yes">  </span>0.00<span style="mso-spacerun: yes">    </span>108<span
+style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>3)-<span style="mso-spacerun: yes">   
+</span>4<span style="mso-spacerun: yes">   </span>1<span style="mso-spacerun:
+yes">    </span>3<span style="mso-spacerun: yes">   </span>2510<span
+style="mso-spacerun: yes">   </span>2830<span style="mso-spacerun: yes">  
+</span>1.78<span style="mso-spacerun: yes">   </span>12.800<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>2<span
+style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun: yes">    
+</span>a b<span style="mso-spacerun: yes">   </span>82<span
+style="mso-spacerun: yes">  </span>0.00<span style="mso-spacerun: yes">    
+</span>63<span style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>4)-<span style="mso-spacerun: yes">   
+</span>4<span style="mso-spacerun: yes">   </span>3<span style="mso-spacerun:
+yes">    </span>1<span style="mso-spacerun: yes">   </span>2831<span
+style="mso-spacerun: yes">   </span>3651<span style="mso-spacerun: yes">  
+</span>2.00<span style="mso-spacerun: yes">   </span>32.800<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>0<span
+style="mso-spacerun: yes">  </span>1.58<span style="mso-spacerun: yes">    
+</span>a<span style="mso-spacerun: yes">    </span>124<span
+style="mso-spacerun: yes">  </span>0.00<span style="mso-spacerun: yes">   
+</span>142<span style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>5)-<span style="mso-spacerun: yes">   
+</span>4<span style="mso-spacerun: yes">   </span>1<span style="mso-spacerun:
+yes">    </span>3<span style="mso-spacerun: yes">   </span>3652<span
+style="mso-spacerun: yes">   </span>5279<span style="mso-spacerun: yes">  
+</span>1.00<span style="mso-spacerun: yes">   </span>65.080<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>0<span
+style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun: yes">      
+</span>b<span style="mso-spacerun: yes">  </span>125<span style="mso-spacerun:
+yes">  </span>0.00<span style="mso-spacerun: yes">    </span>138<span
+style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>6)-<span style="mso-spacerun: yes">   
+</span>6<span style="mso-spacerun: yes">   </span>3<span style="mso-spacerun:
+yes">    </span>3<span style="mso-spacerun: yes">   </span>5280<span
+style="mso-spacerun: yes">   </span>5813<span style="mso-spacerun: yes">  
+</span>1.00<span style="mso-spacerun: yes">   </span>21.320<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>0<span
+style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun: yes">      
+</span>b<span style="mso-spacerun: yes">  </span>109<span style="mso-spacerun:
+yes">  </span>0.00<span style="mso-spacerun: yes">    </span>218<span
+style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>7)-<span style="mso-spacerun: yes">   
+</span>4<span style="mso-spacerun: yes">   </span>3<span style="mso-spacerun:
+yes">    </span>1<span style="mso-spacerun: yes">   </span>5814<span
+style="mso-spacerun: yes">   </span>6266<span style="mso-spacerun: yes">  
+</span>1.00<span style="mso-spacerun: yes">   </span>18.080<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>0<span
+style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun: yes">    
+</span>a<span style="mso-spacerun: yes">    </span>145<span
+style="mso-spacerun: yes">  </span>0.00<span style="mso-spacerun: yes">    
+</span>97<span style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>8)-<span style="mso-spacerun: yes">   
+</span>2<span style="mso-spacerun: yes">  </span><span style="mso-spacerun:
+yes"> </span>1<span style="mso-spacerun: yes">    </span>1<span
+style="mso-spacerun: yes">   </span>6267<span style="mso-spacerun: yes">  
+</span>6890<span style="mso-spacerun: yes">   </span>3.00<span
+style="mso-spacerun: yes">   </span>24.920<span style="mso-spacerun: yes">  
+</span>0<span style="mso-spacerun: yes">    </span>0.00<span
+style="mso-spacerun: yes">     </span>0<span style="mso-spacerun: yes"> 
+</span>1.69<span style="mso-spacerun: yes">     </span>a<span
+style="mso-spacerun: yes">     </span>77<span style="mso-spacerun: yes"> 
+</span>0.00<span style="mso-spacerun: yes">    </span>117<span
+style="mso-spacerun: yes">              </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>9)+<span style="mso-spacerun: yes">   
+</span>1<span style="mso-spacerun: yes">   </span>1<span style="mso-spacerun:
+yes">    </span>0<span style="mso-spacerun: yes">   </span>6891<span
+style="mso-spacerun: yes">  </span>10306<span style="mso-spacerun: yes">  
+</span>0.32<span style="mso-spacerun: yes">  </span>136.600<span
+style="mso-spacerun: yes">   </span>0<span style="mso-spacerun: yes">   
+</span>0.00<span style="mso-spacerun: yes">     </span>0<span
+style="mso-spacerun: yes">  </span>1.30<span style="mso-spacerun: yes">    
+</span>a b<span style="mso-spacerun: yes">   </span>69<span
+style="mso-spacerun: yes">  </span>0.69<span style="mso-spacerun: yes">   
+</span>142<span style="mso-spacerun: yes">              </span></span><span
+style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The letters below ‘cut’
+describe again the reason for the segmentation: a=aspectatio, b=blackframe,
+u=uniform frame, s=scene change. If you see more ‘u’ then ‘b’ below ‘cut’ then
+your black frame detection may need adjustment. See above on how.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The start (fs) and the end
+(fe) frame numbers can be used for the visual verification in the debugwindow.
+Use the ‘a’ key to skip quickly to the end of each block. Use the ‘b’ key to
+skip to the beginning of each block. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Remember that Comskip will
+differentiate between show and commercials based on this block list. If certain
+blocks combine both show and commercial there is no way for Comskip to split
+them again after the creation of the block list. Only when additional black
+frames or aspect ratio changes are detected Comskip can further split the blocks.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774686">Tuning the heuristics</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Now the most important
+parameters for the creation of the block list have been set it is time to tune
+the heuristics. Comskip uses a heuristics or Fuzzy Logic scoring process to
+determine if a block is part of a show or part of a commercial. First ensure
+Comskip has been run on long.mpg and it has generated long.csv.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The most important
+parameters guiding the heuristics are <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>min_show_segment_length=140<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_commercial_size=120<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>min_commercial_size=4<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='mso-list:l0 level1 lfo1;tab-stops:list .5in'><span
+     style='font-family:Arial'>Any block longer then </span><span
+     style='font-family:"Courier New"'>min_show_segment_length </span><span
+     style='font-family:Arial'>will be scored towards show.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l0 level1 lfo1;tab-stops:list .5in'><span
+     style='font-family:Arial'>Any block with an aspect ratio different from
+     the dominant aspect ratio will be scored towards commercial. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l0 level1 lfo1;tab-stops:list .5in'><span
+     style='font-family:Arial'>Any block that has the length (strict or
+     nonstrict) of standard commercials will be scored towards commercial.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l0 level1 lfo1;tab-stops:list .5in'><span
+     style='font-family:Arial'>Any group of combined blocks in total being
+     shorter then </span><span style='font-family:"Courier New"'>max_commercial_size</span><span
+     style='font-family:Arial'> will also be checked for these standard
+     commercial sizes and scored towards commercial when a match is found<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l0 level1 lfo1;tab-stops:list .5in'><span
+     style='font-family:Arial'>Any block that has logo will be scored towards
+     show.<o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The amount of score increase
+or decrease is controlled by the following parameters<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>length_strict_modifier=3.0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>length_nonstrict_modifier=1.5<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>combined_length_strict_modifier=2.0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>combined_length_nonstrict_modifier=1.25<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>logo_present_modifier=0.01<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>excessive_length_modifier=0.01<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>ar_wrong_modifier=2.0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>min_schange_modifier=0.5<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_schange_modifier=2.0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>schange_threshold=80<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>cc_commercial_type_modifier=4.0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>cc_wrong_type_modifier=2.0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>cc_correct_type_modifier=0.75<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>dictionary_modifier=1.05</span><span
+style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774687">Final commercial list generation</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>When the scoring process is
+done Comskip will generate the list of commercials using this parameter<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>global_threshold=1.05
+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Any block that scores (below
+‘sc’ in the final block list) above this threshold will be regarded as
+commercial, any block scoring lower will be regarded as show. Then Comskip
+combines the blocks into the commercial list and does one additional check
+using the following parameters<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_commercialbreak=600<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>min_commercialbreak=10<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Any commercial that is
+shorter then </span><span style='font-family:"Courier New"'>min_commercialbreak
+or longer then max_commercialbreak </span><span style='font-family:Arial'>will
+be discarded from the list.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The final result is visible
+in the debug windows as the gray bars in the Frame bar and will be output the
+.txt file. The blocks that are part of the show will be indicated with a ‘+’ in
+the block list.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774688">Trying different settings</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Although it is possible to
+do a complete rerun of Comskip after changing some setting it is possible to do
+it somewhat quicker. One the .csv file is generated Comskip can read the .csv
+file instead of the .mpg file. This will eliminate the long mpeg decoding
+process so Comskip will be much quicker. Dragging and dropping a file like
+long.csv on the Comskip desktop icon can do this. The debugwindow will show the
+first frame of the mpeg once the processing is finished and in the Frame Bar
+the details can be seen. Using the various keys the result can be quickly
+reviewed.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Please remember that this can
+only be done for changes to the heuristics parameters and the max_volume
+setting. Any changes to the brightness and logo detection parameters requires a
+full rerun of Comskip.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-family:Arial'>Fine tuning for certain
+broadcast styles.<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Some recordings will contain
+after the final commercial the beginning of the next show. This is more often
+happening when post-padding is applied. To automatically delete this set the
+following parameter<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>delete_show_after_last_commercial=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>As a consequence the final
+commercial segment at the end of the recording is allowed to be much longer
+then </span><span style='font-family:"Courier New"'>max_commercialbreak</span><span
+style='font-family:Arial'> <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The reverse is also
+available to automatically delete the part of the show before the first
+commercial set <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>delete_show_before_first_commercial=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Both above algorithms will be
+automatically disabled if the commercial is not within the outside 15% of the
+recording<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When logo detection is
+enabled Comskip also automatically recognizes a special recording sequence: a
+show block of a previous show, optionally a single short commercial block of
+length less then </span><span style='font-family:"Courier New"'>min_commercialbreak</span><span
+style='font-family:Arial'> and then the first show block of the intended show.
+Comskip can also detect the reverse of this pattern at the end of the show. The
+single show blocks before the first real show block and after the last real
+show block will be deleted automatically.<span style="mso-spacerun: yes"> 
+</span>Also a single long show block without logo before or after the other
+show blocks will be deleted automatically. This behavior can be disabled with<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>delete_show_before_or_after_current=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774689">Reducing the commercial size</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>In certain circumstances the
+commercials should be smaller as detected by Comskip. This can be done by using
+the following line in the ini file<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>padding=6<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The will set the start of
+the detected commercial 6 seconds later and sets the end of the commercial 6
+seconds earlier. The debugwindow will show this by marking the first and last 6
+seconds of the commercial as lighter gray.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774690">Automated setting of certain parameters</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>For certain broadcast
+condition such as typical in the USA or Canada some tuning has been automated.
+To use this set<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>intelligent_brightness=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>max_volume=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The scoring threshold can
+also be automatically adjusted by setting<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>global_threshold=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Now Comskip will automatic
+try to determine a number of settings based on the exact fraction of show
+present in the recording and the expected amount of black frames. This is
+determined by <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>score_percentile=0.71<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>black_percentile=0.0073</span><span
+style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>These fractions should match
+exactly you broadcast conditions and any show with a lot of very dark or black
+frames or less then 1-</span><span style='font-family:"Courier New"'>
+score_percentile </span><span style='font-family:Arial'>fraction commercial
+will mess up the automated process. They are therefore not recommended in
+countries with less strictly regulated broadcast conditions.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Unless you know what you are
+doing it is not recommended to use this automated approach.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774691">Using the optimized Comskip.ini</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Before the optimized
+Comskip.ini can be used some changes have to be made.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>During normal use the
+debugwindow should not be shown, no .csv should be generated, the logo file
+should be deleted and no or only limited logging should be done.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>These are the recommended
+settings.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>verbose=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>delete_logo_file=1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>output_framearray=0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>output_debugwindow=0</span><span
+style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc121774692">Verifying Comskip output during normal execution</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>During normal execution you
+may want to verify the quality of the generated .txt file listing the detected
+commercials. A simple way to do this is to drag and drop the generated .txt
+file on the Comskip.exe. This will open the debugwindow and show the in the
+frame bar the location of the detected commercials. Using the mouse to click on
+the frame bar or by using the keyboard as described in the debugwindow guide
+one can quickly review the correctness of the generated data. It is even
+possible to edit the list of commercials and to save the new list.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Pressing F1 will show the
+available command keys.<o:p></o:p></span></p>
+
+<h1><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></h1>
+
+<h1>Reducing the CPU load</h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Comskip runs on “Idle”
+priority allowing other programs to execute normally. The Disk IO by Comskip
+can be rather high so <span style="mso-spacerun: yes"> </span>it may be useful
+to reduce the throttle the execution speed of Comskip. The main parameters for
+this with their default values are <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>play_nice_sleep=10<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>play_nice_start-1<o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>play_nice_end=-1<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The value of </span><span
+style='font-family:"Courier New"'>play_nice_sleep</span><span style='font-family:
+Arial'> is the number of milliseconds Comskip will suspend execution after each
+frame processed. This will be done starting from </span><span style='font-family:
+"Courier New"'>play_nice_start</span><span style='font-family:Arial'> till </span><span
+style='font-family:"Courier New"'>play_nice_end</span><span style='font-family:
+Arial'>, both in 24 hour time format. From 7 in the morning till eleven in the
+evening will be <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>play_nice_start=700<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Courier New"'>play_nice_end=2300<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

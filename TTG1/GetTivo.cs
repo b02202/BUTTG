@@ -9,6 +9,8 @@ using System.Xml.Linq;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
+using IKVM;
+
 
 namespace TTG1
 {
@@ -36,6 +38,7 @@ namespace TTG1
             Client.Credentials = new NetworkCredential(UserName, Password);
             Reader = new StreamReader(Client.OpenRead(TivoURL));
             string contents = Reader.ReadToEnd();
+            
             //XDocument testDoc = new XDocument();
             //testDoc = XDocument.Parse(contents);
             //string path = @"c:\temp\details.xml";

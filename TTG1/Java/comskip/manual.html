@@ -1,0 +1,1045 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./manual_files/filelist.xml">
+<title>Tuning Comskip</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Erik Kaashoek</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Erik Kaashoek</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>541</o:TotalTime>
+  <o:Created>2006-03-31T06:06:00Z</o:Created>
+  <o:LastSaved>2006-03-31T06:06:00Z</o:LastSaved>
+  <o:Pages>6</o:Pages>
+  <o:Words>2202</o:Words>
+  <o:Characters>12555</o:Characters>
+  <o:Company>Philips</o:Company>
+  <o:Lines>104</o:Lines>
+  <o:Paragraphs>25</o:Paragraphs>
+  <o:CharactersWithSpaces>15418</o:CharactersWithSpaces>
+  <o:Version>9.7616</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DoNotHyphenateCaps/>
+  <w:PunctuationKerning/>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-font-kerning:0pt;}
+h2
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:Arial;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:Arial;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:12.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:24.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:48.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:96.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in .8in 1.0in .8in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-header:url("./manual_files/header.htm") h1;
+	mso-footer:url("./manual_files/header.htm") f1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:891577778;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1858476860 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;
+	mso-bidi-font-family:"Times New Roman";}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2049"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h1><a name="_Toc128549924">A short guide to Comskip</a></h1>
+
+<p class=MsoNormal>By Erik.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1><a name="_Toc128549925">Contents:</a></h1>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><!--[if supportFields]><span
+style='font-family:Arial'><span style='mso-element:field-begin'></span><span
+style="mso-spacerun: yes"> </span>TOC \o &quot;1-3&quot; \h \z <span
+style='mso-element:field-separator'></span></span><![endif]--><span
+class=MsoHyperlink><a href="#_Toc128549924">A short guide to Comskip<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549924 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003200340000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549925">Contents:<span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549925 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003200350000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549926">Introduction<span style='color:
+windowtext;display:none;mso-hide:screen;text-decoration:none;text-underline:
+none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549926 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003200360000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549927">Instalation<span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549927 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003200370000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549928">Running Comskip automatically by
+GBPVR<span style='color:windowtext;display:none;mso-hide:screen;text-decoration:
+none;text-underline:none'><span style='mso-tab-count:1 dotted'>.. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549928 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>1</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003200380000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549929">Manual running of Comskip<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549929 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>2</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003200390000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549930">Input files<span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549930 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>3</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300300000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549931">Running Comskip the Windows way<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549931 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>3</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300310000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549932">Configuring Comskip<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549932 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>4</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300320000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549933">Frame number<span style='color:
+windowtext;display:none;mso-hide:screen;text-decoration:none;text-underline:
+none'><span style='mso-tab-count:1 dotted'> </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549933 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>4</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300330000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549934">Graph on video information<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549934 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>5</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300340000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549935">Navigation<span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549935 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>5</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300350000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549936">Commercial reviewing mode<span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549936 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>5</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300360000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoToc1 style='tab-stops:right dotted 496.3pt'><span
+class=MsoHyperlink><a href="#_Toc128549937">Terminating<span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-tab-count:1 dotted'>. </span></span><!--[if supportFields]><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'><span style='mso-element:field-begin'></span></span><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'> PAGEREF _Toc128549937 \h </span><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='color:windowtext;display:none;mso-hide:screen;text-decoration:none;
+text-underline:none'>6</span><span style='color:windowtext;display:none;
+mso-hide:screen;text-decoration:none;text-underline:none'><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F0054006F00630031003200380035003400390039003300370000000000</w:data>
+</xml><![endif]--></span><!--[if supportFields]><span style='color:windowtext;
+display:none;mso-hide:screen;text-decoration:none;text-underline:none'><span
+style='mso-element:field-end'></span></span><![endif]--></a></span><o:p></o:p></p>
+
+<p class=MsoNormal><!--[if supportFields]><span style='font-family:Arial'><span
+style='mso-element:field-end'></span></span><![endif]--><span style='font-family:
+Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc128549926">Introduction</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Before using Comskip it is
+essential to understand the basic operation of Comskip. Comskip reads and
+decodes a recorded mpeg file based on instructions Comskip reads from a so
+called ini file. The recording is analyzed on various characteristics such as
+black frames, silences and changes in aspect ratio.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Based on this information
+Comskip segments the recording in blocks and using heuristics, together with
+additional information such as the presence of logo, the scene change rate,
+Close Captioning information and other information sources Comskip tries to
+determine what blocks of the recording are to be characterized as commercials.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>After the analysis is done
+Comskip writes out the information on the detected commercials in various
+possible formats.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc128549927">Instalation</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>This guide describes how to
+use Comskip in combination with GBPVR. GBPVR is an excellent free PVR software
+for Windows. Other PVR software’s may also be able to make use of Comskip.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Copy all files from the
+distribution zip file that start with Comskip into the GBPVR home directory.
+This is normally c:\Program Files\devnz\gbpvr\<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc128549928">Running Comskip automatically by GBPVR</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>There are multiple ways to
+let GBPVR activate Comskip. The simplest approach is to enable Comskip in the
+configuration tab of GBPVR. This will start Comskip as soon as a recording
+ends. Only one Comskip will be active at any time so when one recording ends
+while Comskip is still busy GBPVR will delay the start of Comskip on the new
+recording till the previous of Comskip is finished.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Another approach is required
+when more then only Comskip has to run after the recoding is finished.<span
+style="mso-spacerun: yes">  </span>One option is the use a postprocessing.bat
+file. GBPVR will run the postprocessing.bat file found in the GBPVR home
+directory after a recording is finished with two parameters. The first
+parameter is the fully qualified filename of the just finished recording. The
+second parameter is the channel number from which the recording was done.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The postprocessing.bat file
+that is included inside the Comskip distribution file gives examples of how
+this information can be used.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>A third way to run Comskip
+is from the parallelprocessing.bat file. This parallelprocessing.bat is activated
+directly after a recording has been started and it uses the same parameters as
+the postprocessing.bat file.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>When run on an ongoing
+recording Comskip will detect when it has reached the end of the file and wait
+some time to see if the file has been growing. If so it will continue reading
+until it again reaches the end of the file. If the file no longer grows Comskip
+assumes the recording is finished and will start the finalization of the
+commercial detection.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The two batch files will
+only be used by GBPVR when the running of Comskip in the GBPVR configuration
+Tab is disabled.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc128549929">Manual running of Comskip</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Comskip is a console window
+program. This means it does not have a nice windows user interface. This can be
+confusing for many users. The biggest problem is that error messages are
+possibly only shown in the console window and when Windows automatically closes
+this window when the Comskip execution is finished one can not read the error
+messages anymore.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The best approach to see all
+the possible output from Comskip is to start a console window and then to
+activate Comskip inside that console window. This prevents Windows from closing
+the windows automatically and will allow the reading of all messages.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>To start a console window
+click on “Start”, then on “Run…”<span style="mso-spacerun: yes">  </span>and
+enter “cmd” without the quotes and click OK.<span style="mso-spacerun: yes"> 
+</span>A black window with a command prompt will appear. If you have never used
+a console window you may enter “help” without the quotes and then the ENTER
+key.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>This will show what command
+you can give. Use the cd command to go the GBPVR home directory and activate
+Comskip by entering the word Comskip together with the name of the file you
+want Comskip to run on enclosed in double quotes. An example: <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:"Courier New"'>comskip<span
+style="mso-spacerun: yes">  </span>“c:\My Videos\my film.mpg”<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>Entering only the word
+Comskip will show the possible use of the Comskip program and its parameters.
+Parameters between [] are optional and [a|b] denotes either a or b can be used
+as an optional parameter. The parameter &lt;file&gt; should be a filename.
+Filenames with spaces should be surrounded by double quotes.<o:p></o:p></span></p>
+
+<p class=MsoToc1><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'>Usage:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>comskip<span style="mso-spacerun: yes"> 
+</span>[-h|--help] [-w|--debugwindow] [-n|--playnice] [--zpcut] [--zpchapter]
+[--videoredo] [--csvout] [-p|--pid=&lt;int&gt;] [-t|--ts]
+[-d|--detectmethod=&lt;int&gt;] [-v|--verbose=&lt;int&gt;] [--ini=&lt;file&gt;]
+[--logo=&lt;file&gt;] &lt;file&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-h, --help<span style="mso-spacerun:
+yes">                </span>Display syntax<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-w, --debugwindow<span style="mso-spacerun:
+yes">         </span>Show debug window<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-n, --playnice<span style="mso-spacerun:
+yes">            </span>Slows detection down<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>--zpcut<span style="mso-spacerun:
+yes">                   </span>Outputs a ZoomPlayer cutlist<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>--zpchapter<span style="mso-spacerun:
+yes">               </span>Outputs a ZoomPlayer chapter file<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>--videoredo<span style="mso-spacerun:
+yes">               </span>Outputs a VideoRedo cutlist<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>--csvout<span style="mso-spacerun:
+yes">                  </span>Outputs a csv of the frame array<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-p, --pid=&lt;int&gt;<span
+style="mso-spacerun: yes">           </span>The PID of the video in the TS<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-t, --ts<span style="mso-spacerun:
+yes">        </span><span style="mso-spacerun: yes">          </span>The input
+file is a Transport Stream<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-d, --detectmethod=&lt;int&gt;<span
+style="mso-spacerun: yes">  </span>An integer sum of the detection methods to
+use<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-v, --verbose=&lt;int&gt;<span
+style="mso-spacerun: yes">       </span>Verbose level<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>-m, --demux<span style="mso-spacerun:
+yes">               </span>Demux the input file into Elementary Streams<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>--ini=&lt;file&gt;<span style="mso-spacerun:
+yes">     </span><span style="mso-spacerun: yes">         </span>Ini file to
+use<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>--logo=&lt;file&gt;<span
+style="mso-spacerun: yes">             </span>Logo file to use<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">  </span>&lt;file&gt;<span style="mso-spacerun:
+yes">                    </span>Input file<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'>Detection
+methods available:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">          </span>1 - Black Frame<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">          </span>2 - Logo<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">          </span>4 - Scene Change<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">          </span>8 - Fuzzy Logic<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">         </span>16 - Closed Captions<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">         </span>32 - Aspect Ratio<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">         </span>64 - Silence<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><span
+style="mso-spacerun: yes">        </span>255 - USE ALL AVAILABLE<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-pagination:widow-orphan lines-together;
+page-break-after:avoid'><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Courier New"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc128549930">Input files</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Comskip can operate on 3
+types of files. The first file type is an MPEG file. The extension must be mpg,
+mpeg (for mpeg Program Streams), ts (for mpeg Transport Streams) or dvr-ms for
+DVR-MS). Maximum resolution is 2000 by 1200 and the content must be MPEG2 video
+and MPEG2 or AC3 audio as recorded by most mpeg encoders. When an mpeg file is
+provided as input Comskip will do a full decoding and commercial
+detection.<span style="mso-spacerun: yes">  </span>When the demux switch is
+used Comskip will demux the mpeg input file into a separate audio and video
+elemtary stream suitable for many editor tools. A second input file type is a
+csv file. This file can be created by a previous run of Comskip by setting
+output_framearry=1 or using the –csvout parameter. This type of input file is
+useful when Comskip must be run multiple times to tune certain parameters. This
+skips the mpeg decoding and results in a substantial faster execution. The
+third type of input file is a .txt file with the commercial cutpoints as
+generated by a previous run of Comskip. When this type of input file is used
+Comskip will open the debugwindow and it is possible to review quickly the
+detected commercials and modify the cutpoints if required and write a new .txt
+file.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc128549931">Running Comskip the Windows way</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>When Comskip is configured
+correctly it is convenient to run Comskip by dragging and dropping an input
+file on the Comskip executable. Its is also possible to create a desktop
+shortcut to Comskip.exe, possibly with added parameters and then drag and drop
+the input file on the desktop shortcut. A third way is right clicking on the
+input file, selecting “Open width…”<span style="mso-spacerun: yes">  </span>and
+then to chose the Comskip executable. After some use Comskip will appear as one
+of the quick “Open width” options.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h1><a name="_Toc128549932">Configuring Comskip</a></h1>
+
+<p class=MsoNormal><span style='font-family:Arial'>Comskip has many
+configurable parameters. They are read from the default Comskip.ini file as
+found in the same directory as Comskip.exe of from the file specified in the
+optional “–ini=&lt;filename&gt; “ parameter. This makes it possible to have
+configuration files optimized for certain conditions. An example of this kind
+of usage can be found in the Postprocessing.bat inside the distribution zip
+file. The tuning of the parameters is described in the tuning manual.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><b><span style='font-family:Arial'>The debug window of Comskip.</span></b><span
+style='font-family:Arial'><br>
+</span>When ComSkip is started with the –w or --debugwindow switch a graphics
+window will appear. Once finished Comskip will NOT automatically exit but has
+to be closed manually by killing the console window or by hitting ESCAPE. Do
+not use the debug window when Comskip is called automatically from GBPVR or
+other PVR software.<br>
+The debugwindow window will show the decoded mpeg in black and white.<br>
+Next to this it will show some information to debug the settings of Comskip.<br>
+Another use of the debugwindow is when Comskip is used to review the output
+of<span style="mso-spacerun: yes">  </span>a previous run of Comskip. This is
+done by starting Comskip with the name of the previously generated .txt file as
+its single parameter. The detailed analysis information is not available in
+this mode but it provides some additional keys for modifying the commercial
+locations and writing out the resulting information.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1><a name="_Toc128549933">Frame number</a> </h1>
+
+<p class=MsoNormal>At the top the frame four numbers are shown. The first
+number is the frame number of the current frame. The second number is the
+brightness. A letter ‘B’ after the brightness indicates the current frame is
+Black. The third number is the volume. A letter ‘S’ after the volume indicates
+the current frame is regarded as Silent. The fourth number is the uniformity of
+the frame. A letter ‘U’ after the uniformity indicates the frame is regarded as
+uniform.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><b><span style='font-family:Arial'>Aspect Ratio information</span></b><span
+style='font-family:Arial'><br>
+</span>Two blue lines are drawn at the border between the black bars at the
+bottom and the top and the active video. <br>
+This will allow to check if the detection settings for&nbsp; max_brightness,
+test_brightness and max_avg_brightness are correct because these are use to
+detect the black parts of the screen<br>
+The blue lines will always stay minimally the border size from the top and
+bottom of the video size.<br style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]></p>
+
+<p class=MsoNormal><b><span style='font-family:Arial'>Logo information</span></b><span
+style='font-family:Arial'><br>
+</span>A rectangle will be draw around the logo position as soon as it&nbsp; is
+found.&nbsp; As soon as the detection level is above the logo_threshold the
+logo detection mask will overlay the logo to indicate the tested pixels. If no
+logo is detected the frame is red.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><b>Timeline information</b><br>
+At the top a timeline is shown indicating information detected for each frame. <br>
+The bottom 5 pixels of the timeline signal&nbsp;the detection of silence. Any
+sound volume level below max_volume will be show as green upon white
+background. Speech without music should give a lot of silence.<br>
+The next 5 pixels on the timeline signal the detection of black frames. A red
+line on a white background signals a black frame or any other frame that is
+signaling an equally relevant scene change.</p>
+
+<p class=MsoNormal>When silence is detected on a black frame both above bars
+will be drawn in black. These lines are the principle cut points for Comskip<br>
+The next 5 pixels of the timeline signal the presence of logo. The presence of
+logo is signaled by black, the absence by white. When logo is disabled, the
+logo presence is signaled by gray bars instead of black.<br>
+The next 10 pixels of the timeline&nbsp;signal the aspect ratio. A blue line on
+a white background&nbsp;depicts the detected aspect ratio where the height of
+the line above the logo bar is proportional to the detected aspect ratio. When
+the detection is finished or when live_tv=1 this bar is also used to show the
+position of commercials. A gray bar signals commercial and a white bar signals
+show.</p>
+
+<p class=MsoNormal>When cut_on_ar_change=1 in the ini file (default) changes in
+the aspect ratio will create additional cut points when sufficient logo is
+found.<br>
+The next 5 pixels are used to show the position of the commercials as indicated
+in an optional reference file as soon as detection is finished. Black depicts
+where commercial are expected, white depicts where show is expected.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1><a name="_Toc128549934">Graph on video information</a></h1>
+
+<p class=MsoNormal>The colored graphs enabled/disabled by pressing the ‘g’ key
+show detailed information about the recording.<br>
+From the bottom to the top it shows brightness, sound, non_uniformity, scene
+change, logo match, aspect ratio and black bar positions.<br>
+Through zooming (‘z’) and unzooming (‘u’) of the timeline you can have both a
+good overview and see on a per frame basis the transitions. The parts of the
+graphs that reach a value below the Blackframe limits (max_avg_brightness,
+max_volume, non_uniformity) get a white color. </p>
+
+<p class=MsoNormal>The bottom four graphs have an additional white/red line
+showing the block average value that is red when above the “total average times
+punish_threshold” and that is white otherwise.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1><a name="_Toc128549935">Navigation</a></h1>
+
+<p class=MsoNormal>When decoding of the mpeg is finished or when the .csv file
+is loaded it is possible to navigate through the mpeg file. Navigation can be
+done with the cursor keys and with page up/down. Look at the frame number to
+see the step taken for each of the keys. A red vertical line in the timeline
+shows the current position. Left clicking with the mouse in the timeline
+repositions the current frame to the click position. This can be used to
+quickly review the correctness of the commercial detection. </p>
+
+<p class=MsoNormal>Pressing ‘n’ skips to just before the next black frame,
+pressing ‘p’ skips to just after the previous next black frame. Pressing ‘e’
+skips to just before the end of the next block, pressing ‘b’ skips to just
+after the beginning of the previous block</p>
+
+<p class=MsoNormal>Video and frame position is not always 100% aligned, the
+actual error depends on the mpeg file being used.</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h1><a name="_Toc128549936">Commercial reviewing mode</a></h1>
+
+<p class=MsoNormal>When started with the .txt file as its single parameter the
+frame number is shown and in the timeline black bars show the location of the
+detected commercials.</p>
+
+<p class=MsoNormal>The navigation is identical except the letter keys. </p>
+
+<p class=MsoNormal>The ‘n’ key jumps to the next end of a detected commercial. </p>
+
+<p class=MsoNormal>The ‘p’ key jumps to the previous beginning of a commercial.</p>
+
+<p class=MsoNormal>The ‘b’ key sets the beginning of the commercial that ends
+after the current frame position</p>
+
+<p class=MsoNormal>The ‘e’ key sets the end of the commercial that begins
+before the current frame position.</p>
+
+<p class=MsoNormal>The ‘i’ key inserts a short commercial at the current
+location</p>
+
+<p class=MsoNormal>The ‘d’ key deletes the commercial around the current frame
+position</p>
+
+<p class=MsoNormal>The ‘w’ key writes the current commercial list to the .txt
+file and all other selected output formats</p>
+
+<h1><br>
+<a name="_Toc128549937">Terminating</a></h1>
+
+<p class=MsoNormal>To stop the session, close the console window or hit the
+ESCAPE key</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

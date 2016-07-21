@@ -57,8 +57,24 @@ namespace TTG1
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
             //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
+
+            string[] arr = new string[4];
+            ListViewItem itm;
+            //add items to ListView
+            arr[0] = "product_1";
+            arr[1] = "100";
+            arr[2] = "10";
+            itm = new ListViewItem();
+            itm.Name = XML.name;
+            itm.Content = "Test";
+            lstTivos.Items.Add(itm);
+
             //////////////UGHHHHH, GOING CRAZY!!!!!!!!!!!!!!
         }
 
+        private void lstTivos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
