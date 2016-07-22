@@ -14,6 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using System.Xml;
+using ikvm;
+using ikvm.io;
+using java.io;
+using IKVM;
+using System.Windows.Forms;
+using ikvm.extensions;
+
 
 namespace TTG1
 {
@@ -57,7 +64,7 @@ namespace TTG1
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
             //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
-
+            ikvm.
             string[] arr = new string[4];
             ListViewItem itm;
             //add items to ListView
