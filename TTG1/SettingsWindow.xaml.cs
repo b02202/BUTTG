@@ -58,8 +58,9 @@ namespace TTG1
             XML xmlClass = new XML(contents);
             //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
             lstTivos.Items.Add(XML.name); //adds the string to all fields
+
             lstTivos.Items.Add("Testing");
-  
+
             /////////////Try to pass a simple array into ListView
             //string[] row1 = { "s1", "s2", "s3" };
             //lstTivos.Items.Add("Column1Text").SubItems.AddRange(row1);  //does not like subitems!!!
@@ -69,6 +70,7 @@ namespace TTG1
             //item.Name = (XML.name);
             //item.Content = ip;
             //lstTivos.Items.Add(item);
+            //var item2 = new ListViewItem(new[] { "test" });
 
             ///////////////ListView code from stackoverflow..........Contructor issues?!?!?
             //ListViewItem newList = new ListViewItem(XML.name); //does not like any arguments
