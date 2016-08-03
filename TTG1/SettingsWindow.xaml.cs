@@ -57,8 +57,52 @@ namespace TTG1
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
             //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
-            //////////////UGHHHHH, GOING CRAZY!!!!!!!!!!!!!!
+            //lstTivos.Items.Add(XML.name); //adds the string to all fields
+
+            //lstTivos.Items.Add("Testing");
+
+            // lstTivos.ItemsSource = new List<string> { "test 1", "Test 2", "Test3" };
+
+            lstTivos.Items.Add(new TivoData()
+            {
+                Description = txtTivoName.Text,
+                Name = XML.name,
+                IP = ip,
+                MAK = mak
+            });
+
+            //lstTivos.SetValue(DataGridTextColumn);
+            /////////////Try to pass a simple array into ListView
+            //string[] row1 = { "s1", "s2", "s3" };
+            //lstTivos.Items.Add("Column1Text").SubItems.AddRange(row1);  //does not like subitems!!!
+
+            //////////////just monkeying around
+            //ListViewItem item = new ListViewItem();
+            //item.Name = (XML.name);
+            //item.Content = ip;
+            //lstTivos.Items.Add(item);
+            //var item2 = new ListViewItem(new[] { "test" });
+
+            ///////////////ListView code from stackoverflow..........Contructor issues?!?!?
+            //ListViewItem newList = new ListViewItem(XML.name); //does not like any arguments
+            //newList.SubItems.Add(tivoName); //again does not like the subitems 
+            //newList.SubItems.Add(ip);
+            //newList.SubItems.Add(mak);
+            //lstTivos.Items.Add(newList);
+
+
         }
 
+        private void lstTivos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    }
+    public class TivoData
+    {
+        public string Description { get; set; }
+        public string Name { get; set; }
+        public string IP { get; set; }
+        public string MAK { get; set; }
     }
 }

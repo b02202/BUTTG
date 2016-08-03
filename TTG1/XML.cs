@@ -46,11 +46,7 @@ namespace TTG1
             if (rootNode is XmlElement)
             {
                 GetName(rootNode);
-                if (name != null)
-                {
-                    return;
-                }
-
+                if (name != null) return;
                 if (rootNode.HasChildNodes)
                 {
                     RecurseXML(rootNode.FirstChild);
@@ -64,9 +60,6 @@ namespace TTG1
             {
                 RecurseXML(rootNode.NextSibling);
             }
-            else if (rootNode is XmlComment)
-            { }
-
         }
 
         private void GetName(XmlNode node)
