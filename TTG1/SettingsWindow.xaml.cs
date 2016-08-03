@@ -65,7 +65,7 @@ namespace TTG1
 
             lstTivos.Items.Add(new TivoData()
             {
-                Description = txtTivoName.Text,
+                Description = tivoName,
                 Name = XML.name,
                 IP = ip,
                 MAK = mak
