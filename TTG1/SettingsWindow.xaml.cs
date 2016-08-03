@@ -61,16 +61,17 @@ namespace TTG1
 
             //lstTivos.Items.Add("Testing");
 
-           // lstTivos.ItemsSource = new List<string> { "test 1", "Test 2", "Test3" };
+            // lstTivos.ItemsSource = new List<string> { "test 1", "Test 2", "Test3" };
 
             lstTivos.Items.Add(new TivoData()
-            {Description = "Desc1",
-            Name = "Name1",
-            IP = "IP1",
-            MAK = "MAK1"});
+            {
+                Description = txtTivoName.Text,
+                Name = XML.name,
+                IP = ip,
+                MAK = mak
+            });
 
             //lstTivos.SetValue(DataGridTextColumn);
-            Console.WriteLine(gridDescription.DependencyObjectType.ToString()); 
             /////////////Try to pass a simple array into ListView
             //string[] row1 = { "s1", "s2", "s3" };
             //lstTivos.Items.Add("Column1Text").SubItems.AddRange(row1);  //does not like subitems!!!
