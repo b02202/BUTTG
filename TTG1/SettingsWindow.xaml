@@ -13,13 +13,14 @@
 
         <ListView x:Name="lstTivos" HorizontalAlignment="Left" Height="100" Margin="10,43,0,0" VerticalAlignment="Top" Width="280" SelectionChanged="lstTivos_SelectionChanged">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Description"/>
-                    <GridViewColumn Header="Name"/>
-                    <GridViewColumn Header="IP Address"/>
-                    <GridViewColumn Header="MAK"/>
+                <GridView x:Name="gridTivos">
+                    <GridViewColumn x:Name="gridDescription" DisplayMemberBinding="{Binding Description}"  Header="Description"/>
+                    <GridViewColumn x:Name="gridName" DisplayMemberBinding="{Binding Name}"  Header="Name"/>
+                    <GridViewColumn x:Name="gridIP" DisplayMemberBinding="{Binding IP}" Header="IP Address"/>
+                    <GridViewColumn x:Name="gridMAK" DisplayMemberBinding="{Binding MAK}"  Header="MAK"/>
                 </GridView>
             </ListView.View>
+            
         </ListView>
         <Label x:Name="lblTivos" Content="Tivos" HorizontalAlignment="Left" Margin="32,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.214,0.039" FontSize="14" FontWeight="Bold" ToolTip="List of current Tivos" Foreground="#FF1CF006"/>
         <Label x:Name="lblTivoName" Content="Tivo Description:" HorizontalAlignment="Left" Margin="16,211,0,0" VerticalAlignment="Top" Foreground="#FFF7FBF7" Width="99"/>

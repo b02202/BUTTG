@@ -57,10 +57,20 @@ namespace TTG1
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
             //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
-            lstTivos.Items.Add(XML.name); //adds the string to all fields
+            //lstTivos.Items.Add(XML.name); //adds the string to all fields
 
-            lstTivos.Items.Add("Testing");
+            //lstTivos.Items.Add("Testing");
 
+           // lstTivos.ItemsSource = new List<string> { "test 1", "Test 2", "Test3" };
+
+            lstTivos.Items.Add(new TivoData()
+            {Description = "Desc1",
+            Name = "Name1",
+            IP = "IP1",
+            MAK = "MAK1"});
+
+            //lstTivos.SetValue(DataGridTextColumn);
+            Console.WriteLine(gridDescription.DependencyObjectType.ToString()); 
             /////////////Try to pass a simple array into ListView
             //string[] row1 = { "s1", "s2", "s3" };
             //lstTivos.Items.Add("Column1Text").SubItems.AddRange(row1);  //does not like subitems!!!
@@ -86,5 +96,12 @@ namespace TTG1
         {
 
         }
+    }
+    public class TivoData
+    {
+        public string Description { get; set; }
+        public string Name { get; set; }
+        public string IP { get; set; }
+        public string MAK { get; set; }
     }
 }
