@@ -30,11 +30,7 @@ namespace TTG1
 
         private void mnuSettings_Click(object sender, RoutedEventArgs e)
         {
-            
-            //MenuItem myMenuItem = (MenuItem)sender;
-            //string name = myMenuItem.Name;
-            //string type = myMenuItem.GetType().Name;
-            //txtOutput.Text = "You clicked a " + type + " named " + name;
+
             Window WinSet = new SettingsWindow();
             WinSet.Show();
         }
@@ -42,7 +38,17 @@ namespace TTG1
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             Window WinSet = new MainWindow();
-            this.Close();
+            Application.Current.Shutdown();
+        }
+
+        private void mnuTivos_Click(object sender, RoutedEventArgs e)
+        {
+            //MenuItem myMenuItem = (MenuItem)sender;
+            //txtOutput.Text = "You clicked a " + myMenuItem.GetType().Name + " named " + myMenuItem.Name;
+            //txtOutput.Text = e.Source.ToString();
+
+
+
         }
     }
 }

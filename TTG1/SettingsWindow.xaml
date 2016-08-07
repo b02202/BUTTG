@@ -26,7 +26,7 @@
         <Label x:Name="lblTivoName" Content="Tivo Description:" HorizontalAlignment="Left" Margin="16,211,0,0" VerticalAlignment="Top" Foreground="#FFF7FBF7" Width="99"/>
         <Label x:Name="lblTivoIP" Content="Tivo IP:" HorizontalAlignment="Left" Margin="118,211,0,0" VerticalAlignment="Top" Foreground="White" Width="75"/>
         <Label x:Name="lblTivoMAK" Content="Tivo MAK:" HorizontalAlignment="Left" Margin="197,211,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <TextBox x:Name="txtTivoName" HorizontalAlignment="Left" Height="23" Margin="19,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89"/>
+        <TextBox x:Name="txtTivoDesc" HorizontalAlignment="Left" Height="23" Margin="19,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89"/>
         <TextBox x:Name="txtTivoIP" HorizontalAlignment="Left" Height="23" Margin="112,234,0,0" TextWrapping="Wrap" Text="68.100.133.126" VerticalAlignment="Top" Width="87"/>
         <TextBox x:Name="txtTivoMAK" HorizontalAlignment="Left" Height="23" Margin="204,234,0,0" TextWrapping="Wrap" Text="4822977039" VerticalAlignment="Top" Width="77"/>
         <Button x:Name="btnTestTivo" Content="Test Connection" HorizontalAlignment="Left" Margin="19,271,0,0" VerticalAlignment="Top" Width="176" Click="btnTestTivo_Click"/>

@@ -9,17 +9,19 @@ using System.Xml.Linq;
 
 namespace TTG1
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class XML
     {
-        public static string name { get; set; }
-        
+
         public XML()
                 {
 
                 }
-        public XML(string path)
+        public XML(string xmlContents)
                 {
-                    ParseName(path);
+                    ParseName(xmlContents);
                 }
         public XML(string path, int showCount)
         {
@@ -46,7 +48,7 @@ namespace TTG1
             if (rootNode is XmlElement)
             {
                 GetName(rootNode);
-                if (name != null) return;
+                if (Tivo.curTivoName != null) return;
                 if (rootNode.HasChildNodes)
                 {
                     RecurseXML(rootNode.FirstChild);
@@ -79,11 +81,11 @@ namespace TTG1
                     RecurseXML(node.NextSibling);
                     break;
                 case "Title":
-                    name = node.InnerText;
+                    Tivo.curTivoName = node.InnerText;
                     break;
 
                 default:
-                    name = "Fell Through Switch";
+                    Tivo.curTivoName = "Fell Through Switch";
                     break;
             }
         }
