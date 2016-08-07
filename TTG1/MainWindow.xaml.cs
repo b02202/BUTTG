@@ -50,5 +50,10 @@ namespace TTG1
 
 
         }
+
+        private void winMain_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

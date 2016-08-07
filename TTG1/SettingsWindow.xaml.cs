@@ -47,10 +47,10 @@ namespace TTG1
         private void btnTestTivo_Click(object sender, RoutedEventArgs e)
         {
             //Load Variables from test boxes
-            string ip = txtTivoIP.Text;
-            string mak = txtTivoMAK.Text;
+            Tivo.curTivoIP = txtTivoIP.Text;
+            Tivo.curTivoMAK = txtTivoMAK.Text;
             //Get stream of data from TiVo
-            string contents = Tivo.GetDetails(ip, mak);
+            string contents = Tivo.GetDetails(Tivo.curTivoIP, Tivo.curTivoMAK);
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
             //Change button text to indicate connection state

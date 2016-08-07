@@ -22,9 +22,16 @@ namespace TTG1
 
 
 
-        public static string GetShowList(string TivoAddress, string Password)
+        public static string GetShowList(string TivoAddress, string Password, int Count, int Offset)
         {
-            return GetContent(new Uri("https://" + TivoAddress + "/TiVoConnect?Command=QueryContainer&Container=/NowPlaying&Recurse=Yes&ItemCount=32&AnchorOffset="), "tivo", Password);
+            if (Offset == 0)
+            {
+                return GetContent(new Uri("https://" + TivoAddress + "/TiVoConnect?Command=QueryContainer&Container=/NowPlaying&Recurse=Yes&ItemCount=" + Count.ToString() + "&AnchorOffset="), "tivo", Password);
+            }
+            else
+            {
+                return GetContent(new Uri("https://" + TivoAddress + "/TiVoConnect?Command=QueryContainer&Container=/NowPlaying&Recurse=Yes&ItemCount=" + Count.ToString() + "&AnchorOffset=" + Offset.ToString()), "tivo", Password);
+            }
         }
 
         public static string GetDetails(string TivoAddress, string Password)

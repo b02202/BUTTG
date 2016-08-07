@@ -33,7 +33,7 @@ namespace TTG1
             XmlDocument xDoc = new XmlDocument();
             xDoc.LoadXml(contents);
             XmlNode root = xDoc.SelectSingleNode("*");
-            RecurseXML(root);
+            RecurseName(root);
         }
 
         public void ParseShows(string contents, int count)
@@ -43,7 +43,7 @@ namespace TTG1
             XmlNode root = xDoc.SelectSingleNode("*");
         }
 
-        public  void RecurseXML(XmlNode rootNode)
+        public  void RecurseName(XmlNode rootNode)
         {
             if (rootNode is XmlElement)
             {
@@ -51,16 +51,16 @@ namespace TTG1
                 if (Tivo.curTivoName != null) return;
                 if (rootNode.HasChildNodes)
                 {
-                    RecurseXML(rootNode.FirstChild);
+                    RecurseName(rootNode.FirstChild);
                 }
                 if (rootNode.NextSibling != null)
                 {
-                    RecurseXML(rootNode.NextSibling);
+                    RecurseName(rootNode.NextSibling);
                 }
             }
             else if (rootNode is XmlText)
             {
-                RecurseXML(rootNode.NextSibling);
+                RecurseName(rootNode.NextSibling);
             }
         }
 
@@ -69,16 +69,16 @@ namespace TTG1
             switch (node.Name)
             {
                 case "TiVoContainer":
-                    RecurseXML(node.FirstChild);
+                    RecurseName(node.FirstChild);
                     break;
                 case  "Details":
-                    RecurseXML(node.FirstChild);
+                    RecurseName(node.FirstChild);
                     break;
                 case "ContentType":
-                    RecurseXML(node.NextSibling);
+                    RecurseName(node.NextSibling);
                     break;
                 case "SourceFormat":
-                    RecurseXML(node.NextSibling);
+                    RecurseName(node.NextSibling);
                     break;
                 case "Title":
                     Tivo.curTivoName = node.InnerText;
@@ -89,6 +89,102 @@ namespace TTG1
                     break;
             }
         }
+
+        public void RecurseCount(XmlNode rootNode)
+        {
+            if (rootNode is XmlElement)
+            {
+                GetCount(rootNode);
+                if (Tivo.curTivoName != null) return;
+                if (rootNode.HasChildNodes)
+                {
+                    RecurseCount(rootNode.FirstChild);
+                }
+                if (rootNode.NextSibling != null)
+                {
+                    RecurseCount(rootNode.NextSibling);
+                }
+            }
+            else if (rootNode is XmlText)
+            {
+                RecurseCount(rootNode.NextSibling);
+            }
+        }
+
+        private void GetCount(XmlNode node)
+        {
+            switch (node.Name)
+            {
+                case "TiVoContainer":
+                    RecurseCount(node.FirstChild);
+                    break;
+                case "Details":
+                    RecurseCount(node.FirstChild);
+                    break;
+                case "ContentType":
+                    RecurseCount(node.NextSibling);
+                    break;
+                case "SourceFormat":
+                    RecurseCount(node.NextSibling);
+                    break;
+                case "Title":
+                    Tivo.curTivoName = node.InnerText;
+                    break;
+
+                default:
+                    Tivo.curTivoName = "Fell Through Switch";
+                    break;
+            }
+        }
+
+        public void RecurseShows(XmlNode rootNode)
+        {
+            if (rootNode is XmlElement)
+            {
+                GetShows(rootNode);
+                if (Tivo.curTivoName != null) return;
+                if (rootNode.HasChildNodes)
+                {
+                    RecurseShows(rootNode.FirstChild);
+                }
+                if (rootNode.NextSibling != null)
+                {
+                    RecurseShows(rootNode.NextSibling);
+                }
+            }
+            else if (rootNode is XmlText)
+            {
+                RecurseShows(rootNode.NextSibling);
+            }
+        }
+
+        private void GetShows(XmlNode node)
+        {
+            switch (node.Name)
+            {
+                case "TiVoContainer":
+                    RecurseShows(node.FirstChild);
+                    break;
+                case "Details":
+                    RecurseShows(node.FirstChild);
+                    break;
+                case "ContentType":
+                    RecurseShows(node.NextSibling);
+                    break;
+                case "SourceFormat":
+                    RecurseShows(node.NextSibling);
+                    break;
+                case "Title":
+                    Tivo.curTivoName = node.InnerText;
+                    break;
+
+                default:
+                    Tivo.curTivoName = "Fell Through Switch";
+                    break;
+            }
+        }
+
+
     }
 }
 
