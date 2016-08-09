@@ -47,7 +47,10 @@ namespace TTG1
             //txtOutput.Text = "You clicked a " + myMenuItem.GetType().Name + " named " + myMenuItem.Name;
             //txtOutput.Text = e.Source.ToString();
 
-
+            if (listShows.HasItems)
+            {
+                listShows.Items.Clear();
+            }
             //Set curTivo* config stuff temporarily for external access and no need to use Settings to configure
             Tivo.curTivoDesc = "My Test Tivo";
             Tivo.curTivoName = "Man Cave";
@@ -57,14 +60,36 @@ namespace TTG1
             XML.TotalItems = 0;
             XML.ShowCount = 0;
             XML.ItemCount = 0;
+            XML.LoopCount = 0;
             //Get the info from the TV (IP, MAK, # of listings to get, # of offset to start listing)
-            string xmlContent = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 5, 0);
+            string xmlDetails = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, 0);
             //Parse the TotalItems count from XML and set the XML.TotalItems variable
-            XML xmlClass = new XML(xmlContent, false);
+            XML xmlClass = new XML(xmlDetails, false);
             //Here I will need to start the logic to loop through as many sets of 50 results are nescessary 
             txtOutput.Text = "Total Items: " + XML.TotalItems + " Item Start: " + XML.ItemStart + " Item Count: " + XML.ItemCount;
             //Parse the Show List from XML and set the XML.TotalItems variable
-            XML xmlClass2 = new XML(xmlContent, true);
+
+
+            while (XML.TotalItems-1 > XML.ShowCount)
+                {
+                    string xmlShows = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, XML.ShowCount);
+                    XML.LoopCount = 0;
+                    XML xmlClass2 = new XML(xmlShows, true);
+                };
+
+            //if (XML.TotalItems > XML.ShowCount)
+            //{
+            //    XML.LoopCount = 0;
+            //    string xmlCont = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, XML.ShowCount);
+            //    XML xmlClass3 = new XML(xmlContent, true);
+            //}
+            //if (XML.TotalItems > XML.ShowCount)
+            //{
+            //    XML.LoopCount = 0;
+            //    string xmlCont = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, XML.ShowCount);
+            //    XML xmlClass3 = new XML(xmlContent, true);
+            //}
+
             txtOutput.Text = "DONE  " + txtOutput.Text;
 
 

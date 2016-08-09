@@ -16,7 +16,7 @@ namespace TTG1
         public string SeasonNumber { get; set; }
         public string EpisodeNumber { get; set; }
         public string ShowingStartTime { get; set; }
-        public string ShowingDuration { get; set; }
+        public string Duration { get; set; }
         public string SourceSize { get; set; }
         public string SourceChannel { get; set; }
         public string SourceStation { get; set; }
@@ -31,20 +31,20 @@ namespace TTG1
     /// </summary>
     public class XML
     {
-        public static string title;
-        public static string episodeTitle;
-        public static string seasonNumber;
-        public static string episodeNumber;
-        public static string showingStartTime;
-        public static string showingDuration;
-        public static string sourceSize;
-        public static string sourceChannel;
-        public static string sourceStation;
-        public static string inProgress;
-        public static string streamingPermission;
-        public static string description;
-        public static string tSURL;
-        public static string xMLURL;
+        public static string title { get; set; }
+        public static string episodeTitle { get; set; }
+        public static string seasonNumber { get; set; }
+        public static string episodeNumber { get; set; }
+        public static string showingStartTime { get; set; }
+        public static string duration { get; set; }
+        public static string sourceSize { get; set; }
+        public static string sourceChannel { get; set; }
+        public static string sourceStation { get; set; }
+        public static string inProgress { get; set; }
+        public static string streamingPermission { get; set; }
+        public static string description { get; set; }
+        public static string tSURL { get; set; }
+        public static string xMLURL { get; set; }
         public static int ShowCount { get; set; }
         public static int TotalItems { get; set; }
         public static int ItemCount { get; set; }
@@ -79,6 +79,7 @@ namespace TTG1
             XmlDocument xDoc = new XmlDocument();
             xDoc.LoadXml(contents);
             XmlNode root = xDoc.SelectSingleNode("*");
+            
             RecurseName(root);
         }
 
@@ -214,7 +215,6 @@ namespace TTG1
             XmlDocument xDoc = new XmlDocument();
             xDoc.LoadXml(contents);
             XmlNode root = xDoc.SelectSingleNode("*");
-            LoopCount = 1;
             RecurseShows(root);
         }
 
@@ -222,9 +222,16 @@ namespace TTG1
         {
             if (rootNode is XmlElement)
             {
-                GetShows(rootNode);
-                
-                if (LoopCount > ItemCount) return;
+                if (LoopCount == ItemCount) return;
+                if (rootNode != null)
+                {
+                    GetShows(rootNode);
+                    if (rootNode == null) return;
+                }
+                else
+                {
+                    return;
+                }
                 if (rootNode.HasChildNodes)
                 {
                     RecurseShows(rootNode.FirstChild);
@@ -236,12 +243,20 @@ namespace TTG1
             }
             else if (rootNode is XmlText)
             {
-                RecurseShows(rootNode.NextSibling);
+                if (rootNode.NextSibling != null)
+                {
+                    RecurseShows(rootNode.NextSibling); 
+                }
+                else
+                {
+                    return;
+                }
             }
         }
 
         private void GetShows(XmlNode node)
         {
+            if (node == null) return;
             switch (node.Name)
             {
                 case "TiVoContainer":
@@ -257,6 +272,7 @@ namespace TTG1
                     RecurseShows(node.NextSibling);
                     break;
                 case "ItemCount":
+                    ItemCount = Int32.Parse(node.InnerText);
                     RecurseShows(node.NextSibling);
                     break;
                 case "Item":
@@ -311,12 +327,17 @@ namespace TTG1
                 case "ShowingStartTime":
                     string sst = FD(node.InnerText);
                     showingStartTime = sst;
+                    if (node.NextSibling.Name != "EpisodeTitle")
+                    {
+                        episodeTitle = "";
+
+                    }
                     RecurseShows(node.NextSibling);
                     break;
                 case "ShowingDuration":
-                    int sdi = Int32.Parse(node.InnerText) / 360;
-                    string sd = sdi.ToString();
-                    showingDuration = sd + " Min";
+                    //int sdi = Int32.Parse(node.InnerText) / 3600000;
+                    //string sd = sdi.ToString("F1");
+                    //showingDuration = sd + " Hrs";
                     RecurseShows(node.NextSibling);
                     break;
                 case "SourceSize":
@@ -352,10 +373,13 @@ namespace TTG1
                     RecurseShows(node.NextSibling);
                     break;
                 case "Description":
-                    string Description = node.InnerText;
+                    description = node.InnerText;
                     RecurseShows(node.NextSibling);
                     break;
                 case "Duration":
+                    TimeSpan t = TimeSpan.FromMilliseconds(Int64.Parse(node.InnerText));
+                    duration = string.Format("{0:D2}h:{1:D2}m", t.Hours, t.Minutes);
+
                     RecurseShows(node.NextSibling);
                     break;
                 case "CaptureDate":
@@ -374,6 +398,14 @@ namespace TTG1
                     RecurseShows(node.NextSibling);
                     break;
                 case "SeriesId":
+                    if (node.NextSibling.InnerText != "EpisodeNumber")
+                    {
+                        seasonNumber = "";
+                        episodeNumber = "";
+                    }
+                    RecurseShows(node.NextSibling);
+                    break;
+                case "ByteOffset":
                     RecurseShows(node.NextSibling);
                     break;
                 case "RecordingQuality":
@@ -392,6 +424,9 @@ namespace TTG1
                 case "SourceType":
                     RecurseShows(node.NextSibling);
                     break;
+                case "PausePointTime":
+                    RecurseShows(node.NextSibling);
+                    break;
                 case "IdGuideSource":
                     RecurseShows(node.ParentNode.NextSibling);
                     break;
@@ -400,27 +435,54 @@ namespace TTG1
                     {
                         tSURL = node.FirstChild.InnerText;
                     }
-                    if (node.NextSibling.FirstChild.Name == "Url")
+                    if (node.NextSibling.Name == "TiVoVideoDetails")
                     {
                         xMLURL = node.NextSibling.FirstChild.InnerText;
                     }
-                    ((MainWindow)System.Windows.Application.Current.MainWindow).listShows.Items.Add(new ShowData()
+                    if (node.NextSibling.Name == "CustomIcon")
+                    {
+                        if (node.NextSibling.NextSibling.Name == "TiVoVideoDetails")
                         {
+                            xMLURL = node.NextSibling.NextSibling.FirstChild.InnerText;
+                        }
+                    }
+
+                    ///Pushing data into a List
+                    //shows.Add(new ShowData()
+                    //{
+                    //    Title = title,
+                    //    EpisodeTitle = episodeTitle,
+                    //    SeasonNumber = seasonNumber,
+                    //    EpisodeNumber = episodeNumber,
+                    //    Description = description,
+                    //    ShowingStartTime = showingStartTime,
+                    //    Duration = duration,
+                    //    SourceSize = sourceSize,
+                    //    SourceChannel = sourceChannel,
+                    //    SourceStation = sourceStation,
+                    //    InProgress = inProgress,
+                    //    StreamingPermission = streamingPermission,
+                    //    TSURL = tSURL,
+                    //    XMLURL = xMLURL
+                    //});
+
+                    ///Pushing data directly into the ListView 
+                    ((MainWindow)System.Windows.Application.Current.MainWindow).listShows.Items.Add(new ShowData()
+                    {
                         Title = title,
                         EpisodeTitle = episodeTitle,
                         SeasonNumber = seasonNumber,
                         EpisodeNumber = episodeNumber,
                         Description = description,
                         ShowingStartTime = showingStartTime,
-                        ShowingDuration = showingDuration,
+                        Duration = duration,
                         SourceSize = sourceSize,
                         SourceChannel = sourceChannel,
                         SourceStation = sourceStation,
-                        InProgress = inProgress,
-                        StreamingPermission = streamingPermission,
-                        TSURL = tSURL,
-                        XMLURL = xMLURL
-
+                        //    InProgress = inProgress,
+                        //    StreamingPermission = streamingPermission,
+                        //    TSURL = tSURL,
+                        //    XMLURL = xMLURL
                     });
                     ShowCount++;
                     LoopCount++;
@@ -428,7 +490,11 @@ namespace TTG1
                     {
                         return;
                     }
-                    RecurseShows(node.ParentNode.ParentNode.NextSibling.FirstChild);
+                    else
+                    {
+                        RecurseShows(node.ParentNode.ParentNode.NextSibling.FirstChild);
+                    }
+                    
                     break;
                 default:
                     Tivo.curTivoName = "Fell Through Switch";

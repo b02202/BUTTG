@@ -13,18 +13,21 @@
             <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
         <ListView x:Name="listShows" HorizontalAlignment="Left" Height="380" Margin="21,189,0,0" VerticalAlignment="Top" Width="1400">
+            <ListView.DataContext>
+                <local:ShowData/>
+            </ListView.DataContext>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Title"/>
-                    <GridViewColumn Header="EpisodeTitle"/>
-                    <GridViewColumn Header="SeasonNumber"/>
-                    <GridViewColumn Header="EpisodeNumber"/>
-                    <GridViewColumn Header="ShowingStartTime"/>
-                    <GridViewColumn Header="ShowingDuration"/>
-                    <GridViewColumn Header="SourceSize"/>
-                    <GridViewColumn Header="SourceChannel"/>
-                    <GridViewColumn Header="SourceStation"/>
-                    <GridViewColumn Header="Description"/>
+                <GridView x:Name="gridShows">
+                    <GridViewColumn x:Name="gridTitle" DisplayMemberBinding="{Binding Title}" Header="Title"/>
+                    <GridViewColumn x:Name="gridEpisodeTitle" DisplayMemberBinding="{Binding EpisodeTitle}" Header="Episode Title"/>
+                    <GridViewColumn x:Name="gridSeasonNumber" DisplayMemberBinding="{Binding SeasonNumber}" Header="S#"/>
+                    <GridViewColumn x:Name="gridEpisodeNumber" DisplayMemberBinding="{Binding EpisodeNumber}" Header="E#"/>
+                    <GridViewColumn x:Name="gridShowingStartTime" DisplayMemberBinding="{Binding ShowingStartTime}" Header="Rec Time"/>
+                    <GridViewColumn x:Name="gridDuration" DisplayMemberBinding="{Binding Duration}" Header="Duration"/>
+                    <GridViewColumn x:Name="gridSourceSize" DisplayMemberBinding="{Binding SourceSize}" Header="Size"/>
+                    <GridViewColumn x:Name="gridSourceChannel" DisplayMemberBinding="{Binding SourceChannel}" Header="Channel"/>
+                    <GridViewColumn x:Name="gridSourceStation" DisplayMemberBinding="{Binding SourceStation}" Header="Station"/>
+                    <GridViewColumn x:Name="gridDescription" DisplayMemberBinding="{Binding Description}" Header="Description"/>
                 </GridView>
             </ListView.View>
         </ListView>

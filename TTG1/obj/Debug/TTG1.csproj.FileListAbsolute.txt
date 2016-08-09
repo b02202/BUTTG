@@ -18,3 +18,4 @@ Y:\TTG\TTG1\TTG1\obj\Debug\SettingsWindow.baml
 C:\Users\Brent\Documents\BUTTG\TTG1\bin\Debug\TTG1.exe.config
 C:\Users\Brent\Documents\BUTTG\TTG1\obj\Debug\TTG1.exe
 C:\Users\Brent\Documents\BUTTG\TTG1\obj\Debug\TTG1.pdb
+Y:\TTG\TTG1\TTG1\obj\Debug\GeneratedInternalTypeHelper.g.cs
