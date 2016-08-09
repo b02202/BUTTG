@@ -15,7 +15,16 @@
         <ListView x:Name="listShows" HorizontalAlignment="Left" Height="380" Margin="21,189,0,0" VerticalAlignment="Top" Width="1400">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Title"/>
+                    <GridViewColumn Header="EpisodeTitle"/>
+                    <GridViewColumn Header="SeasonNumber"/>
+                    <GridViewColumn Header="EpisodeNumber"/>
+                    <GridViewColumn Header="ShowingStartTime"/>
+                    <GridViewColumn Header="ShowingDuration"/>
+                    <GridViewColumn Header="SourceSize"/>
+                    <GridViewColumn Header="SourceChannel"/>
+                    <GridViewColumn Header="SourceStation"/>
+                    <GridViewColumn Header="Description"/>
                 </GridView>
             </ListView.View>
         </ListView>

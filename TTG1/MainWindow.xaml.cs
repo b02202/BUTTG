@@ -48,6 +48,26 @@ namespace TTG1
             //txtOutput.Text = e.Source.ToString();
 
 
+            //Set curTivo* config stuff temporarily for external access and no need to use Settings to configure
+            Tivo.curTivoDesc = "My Test Tivo";
+            Tivo.curTivoName = "Man Cave";
+            Tivo.curTivoIP = "68.100.133.126";
+            Tivo.curTivoMAK = "4822977039";
+            //Make sure the XML.*COUNTS* are all zero'd
+            XML.TotalItems = 0;
+            XML.ShowCount = 0;
+            XML.ItemCount = 0;
+            //Get the info from the TV (IP, MAK, # of listings to get, # of offset to start listing)
+            string xmlContent = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 5, 0);
+            //Parse the TotalItems count from XML and set the XML.TotalItems variable
+            XML xmlClass = new XML(xmlContent, false);
+            //Here I will need to start the logic to loop through as many sets of 50 results are nescessary 
+            txtOutput.Text = "Total Items: " + XML.TotalItems + " Item Start: " + XML.ItemStart + " Item Count: " + XML.ItemCount;
+            //Parse the Show List from XML and set the XML.TotalItems variable
+            XML xmlClass2 = new XML(xmlContent, true);
+            txtOutput.Text = "DONE  " + txtOutput.Text;
+
+
 
         }
 

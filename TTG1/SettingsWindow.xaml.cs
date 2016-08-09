@@ -67,7 +67,8 @@ namespace TTG1
             string contents = Tivo.GetDetails(Tivo.curTivoIP, Tivo.curTivoMAK);
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
-            //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
+            //Here we add Tivo.curTivoDesc, Tivo.curTivoName, Tivo.curTivoIP, Tivo.curTivoMAK to the ListView lstTivos
+            //using the TivoSettings class
             lstTivos.Items.Add(new TivoSettings()
             {
                 Description = Tivo.curTivoDesc,
