@@ -184,7 +184,7 @@ namespace TTG1
                     RecurseCount(node.NextSibling);
                     break;
                 case "TotalItems":
-                    TotalItems = Int32.Parse(node.InnerText);
+                    TotalItems = Int32.Parse(node.InnerText) - 1;
                     RecurseCount(node.NextSibling);
                     break;
                 case "UniqueId":
@@ -479,10 +479,10 @@ namespace TTG1
                         SourceSize = sourceSize,
                         SourceChannel = sourceChannel,
                         SourceStation = sourceStation,
-                        //    InProgress = inProgress,
-                        //    StreamingPermission = streamingPermission,
-                        //    TSURL = tSURL,
-                        //    XMLURL = xMLURL
+                        InProgress = inProgress,
+                        StreamingPermission = streamingPermission,
+                        TSURL = tSURL,
+                        XMLURL = xMLURL
                     });
                     ShowCount++;
                     LoopCount++;

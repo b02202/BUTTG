@@ -43,10 +43,6 @@ namespace TTG1
 
         private void mnuTivos_Click(object sender, RoutedEventArgs e)
         {
-            //MenuItem myMenuItem = (MenuItem)sender;
-            //txtOutput.Text = "You clicked a " + myMenuItem.GetType().Name + " named " + myMenuItem.Name;
-            //txtOutput.Text = e.Source.ToString();
-
             if (listShows.HasItems)
             {
                 listShows.Items.Clear();
@@ -61,37 +57,21 @@ namespace TTG1
             XML.ShowCount = 0;
             XML.ItemCount = 0;
             XML.LoopCount = 0;
-            //Get the info from the TV (IP, MAK, # of listings to get, # of offset to start listing)
+            //Get the info from the TiVo (IP, MAK, # of listings to get, # of offset to start listing)
             string xmlDetails = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, 0);
             //Parse the TotalItems count from XML and set the XML.TotalItems variable
             XML xmlClass = new XML(xmlDetails, false);
             //Here I will need to start the logic to loop through as many sets of 50 results are nescessary 
             txtOutput.Text = "Total Items: " + XML.TotalItems + " Item Start: " + XML.ItemStart + " Item Count: " + XML.ItemCount;
             //Parse the Show List from XML and set the XML.TotalItems variable
-
-
-            while (XML.TotalItems-1 > XML.ShowCount)
+            while (XML.TotalItems > XML.ShowCount)
                 {
                     string xmlShows = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, XML.ShowCount);
                     XML.LoopCount = 0;
                     XML xmlClass2 = new XML(xmlShows, true);
                 };
-
-            //if (XML.TotalItems > XML.ShowCount)
-            //{
-            //    XML.LoopCount = 0;
-            //    string xmlCont = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, XML.ShowCount);
-            //    XML xmlClass3 = new XML(xmlContent, true);
-            //}
-            //if (XML.TotalItems > XML.ShowCount)
-            //{
-            //    XML.LoopCount = 0;
-            //    string xmlCont = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, XML.ShowCount);
-            //    XML xmlClass3 = new XML(xmlContent, true);
-            //}
-
             txtOutput.Text = "DONE  " + txtOutput.Text;
-
+            ///Here I wouls like to iterate through the ListView and change rows to different colors based on content
 
 
         }
