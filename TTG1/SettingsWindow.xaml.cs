@@ -71,17 +71,10 @@ namespace TTG1
             //using the TivoSettings class
             lstTivos.Items.Add(new TivoSettings()
             {
-<<<<<<< HEAD
-                Description = tivoName,
-                Name = XML.name,
-                IP = ip,
-                MAK = mak
-=======
                 Description = Tivo.curTivoDesc,
                 Name = Tivo.curTivoName,
                 IP = Tivo.curTivoIP,
                 MAK = Tivo.curTivoMAK
->>>>>>> ListViews
             });
         }
 
