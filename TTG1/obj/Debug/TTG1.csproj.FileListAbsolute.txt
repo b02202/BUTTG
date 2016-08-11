@@ -13,10 +13,9 @@ Y:\TTG\TTG1\TTG1\obj\Debug\TTG1.Properties.Resources.resources
 Y:\TTG\TTG1\TTG1\obj\Debug\TTG1.csproj.GenerateResource.Cache
 Y:\TTG\TTG1\TTG1\obj\Debug\TTG1.exe
 Y:\TTG\TTG1\TTG1\obj\Debug\TTG1.pdb
-Y:\TTG\TTG1\TTG1\obj\Debug\SettingsPage.g.cs
-Y:\TTG\TTG1\TTG1\obj\Debug\SettingsPage.baml
 Y:\TTG\TTG1\TTG1\obj\Debug\SettingsWindow.g.cs
 Y:\TTG\TTG1\TTG1\obj\Debug\SettingsWindow.baml
 C:\Users\Brent\Documents\BUTTG\TTG1\bin\Debug\TTG1.exe.config
 C:\Users\Brent\Documents\BUTTG\TTG1\obj\Debug\TTG1.exe
 C:\Users\Brent\Documents\BUTTG\TTG1\obj\Debug\TTG1.pdb
+Y:\TTG\TTG1\TTG1\obj\Debug\GeneratedInternalTypeHelper.g.cs

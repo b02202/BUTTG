@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TTG1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1900">
+        Title="MainWindow" Height="1000" Width="1900" Closed="winMain_Closed">
     <Grid x:Name="grdMain1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1842*"/>
@@ -13,15 +13,28 @@
             <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
         <ListView x:Name="listShows" HorizontalAlignment="Left" Height="380" Margin="21,189,0,0" VerticalAlignment="Top" Width="1400">
+            <ListView.DataContext>
+                <local:ShowData/>
+            </ListView.DataContext>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
+                <GridView x:Name="gridShows">
+                    <GridViewColumn x:Name="gridTitle" DisplayMemberBinding="{Binding Title}" Header="Title"/>
+                    <GridViewColumn x:Name="gridEpisodeTitle" DisplayMemberBinding="{Binding EpisodeTitle}" Header="Episode Title"/>
+                    <GridViewColumn x:Name="gridSeasonNumber" DisplayMemberBinding="{Binding SeasonNumber}" Header="S#"/>
+                    <GridViewColumn x:Name="gridEpisodeNumber" DisplayMemberBinding="{Binding EpisodeNumber}" Header="E#"/>
+                    <GridViewColumn x:Name="gridShowingStartTime" DisplayMemberBinding="{Binding ShowingStartTime}" Header="Rec Time"/>
+                    <GridViewColumn x:Name="gridDuration" DisplayMemberBinding="{Binding Duration}" Header="Duration"/>
+                    <GridViewColumn x:Name="gridSourceSize" DisplayMemberBinding="{Binding SourceSize}" Header="Size"/>
+                    <GridViewColumn x:Name="gridSourceChannel" DisplayMemberBinding="{Binding SourceChannel}" Header="Channel"/>
+                    <GridViewColumn x:Name="gridSourceStation" DisplayMemberBinding="{Binding SourceStation}" Header="Station"/>
+                    <GridViewColumn x:Name="gridDescription" DisplayMemberBinding="{Binding Description}" Header="Description"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="819" FontSize="14">
+        <Menu x:Name="menu" HorizontalAlignment="Right" Height="22" VerticalAlignment="Top" Width="819" FontSize="14" Margin="0,0,1023,0">
             <MenuItem x:Name="mnuMain" Header="File">
                 <MenuItem x:Name="mnuSettings" Header="Settings" Click="mnuSettings_Click"/>
+                <MenuItem x:Name="mnuTivos" Header="List TiVos" HorizontalAlignment="Left" Width="149" Click="mnuTivos_Click"/>
                 <MenuItem x:Name="mnuExit" Header="Exit" Click="mnuExit_Click"/>
             </MenuItem>
         </Menu>

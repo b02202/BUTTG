@@ -30,11 +30,7 @@ namespace TTG1
 
         private void mnuSettings_Click(object sender, RoutedEventArgs e)
         {
-            
-            //MenuItem myMenuItem = (MenuItem)sender;
-            //string name = myMenuItem.Name;
-            //string type = myMenuItem.GetType().Name;
-            //txtOutput.Text = "You clicked a " + type + " named " + name;
+
             Window WinSet = new SettingsWindow();
             WinSet.Show();
         }
@@ -42,7 +38,47 @@ namespace TTG1
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             Window WinSet = new MainWindow();
-            this.Close();
+            Application.Current.Shutdown();
+        }
+
+        private void mnuTivos_Click(object sender, RoutedEventArgs e)
+        {
+            if (listShows.HasItems)
+            {
+                listShows.Items.Clear();
+            }
+            //Set curTivo* config stuff temporarily for external access and no need to use Settings to configure
+            Tivo.curTivoDesc = "My Test Tivo";
+            Tivo.curTivoName = "Man Cave";
+            Tivo.curTivoIP = "68.100.133.126";
+            Tivo.curTivoMAK = "4822977039";
+            //Make sure the XML.*COUNTS* are all zero'd
+            XML.TotalItems = 0;
+            XML.ShowCount = 0;
+            XML.ItemCount = 0;
+            XML.LoopCount = 0;
+            //Get the info from the TiVo (IP, MAK, # of listings to get, # of offset to start listing)
+            string xmlDetails = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, 0);
+            //Parse the TotalItems count from XML and set the XML.TotalItems variable
+            XML xmlClass = new XML(xmlDetails, false);
+            //Here I will need to start the logic to loop through as many sets of 50 results are nescessary 
+            txtOutput.Text = "Total Items: " + XML.TotalItems + " Item Start: " + XML.ItemStart + " Item Count: " + XML.ItemCount;
+            //Parse the Show List from XML and set the XML.TotalItems variable
+            while (XML.TotalItems > XML.ShowCount)
+                {
+                    string xmlShows = Tivo.GetShowList(Tivo.curTivoIP, Tivo.curTivoMAK, 32, XML.ShowCount);
+                    XML.LoopCount = 0;
+                    XML xmlClass2 = new XML(xmlShows, true);
+                };
+            txtOutput.Text = "DONE  " + txtOutput.Text;
+            ///Here I wouls like to iterate through the ListView and change rows to different colors based on content
+
+
+        }
+
+        private void winMain_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

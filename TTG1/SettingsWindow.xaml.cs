@@ -25,6 +25,17 @@ namespace TTG1
         public SettingsWindow()
         {
             InitializeComponent();
+            if (Tivo.curTivoName != null)
+            {
+                lstTivos.Items.Add(new TivoSettings()
+                {
+                    Description = Tivo.curTivoDesc,
+                    Name = Tivo.curTivoName,
+                    IP = Tivo.curTivoIP,
+                    MAK = Tivo.curTivoMAK
+                });
+
+            }
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
@@ -36,61 +47,42 @@ namespace TTG1
         private void btnTestTivo_Click(object sender, RoutedEventArgs e)
         {
             //Load Variables from test boxes
-            string ip = txtTivoIP.Text;
-            string mak = txtTivoMAK.Text;
+            Tivo.curTivoIP = txtTivoIP.Text;
+            Tivo.curTivoMAK = txtTivoMAK.Text;
             //Get stream of data from TiVo
-            string contents = Tivo.GetDetails(ip, mak);
+            string contents = Tivo.GetDetails(Tivo.curTivoIP, Tivo.curTivoMAK);
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
             //Change button text to indicate connection state
-            btnTestTivo.Content = "Connected to: " + XML.name;
+            btnTestTivo.Content = "Connected to: " + Tivo.curTivoName;
         }
 
         private void btnAddTivo_Click(object sender, RoutedEventArgs e)
         {
             //Load Variables from test boxes
-            string ip = txtTivoIP.Text;
-            string mak = txtTivoMAK.Text;
-            string tivoName = txtTivoName.Text;
+            Tivo.curTivoIP = txtTivoIP.Text;
+            Tivo.curTivoMAK = txtTivoMAK.Text;
+            Tivo.curTivoDesc = txtTivoDesc.Text;
             //Get stream of data from TiVo
-            string contents = Tivo.GetDetails(ip, mak);
+            string contents = Tivo.GetDetails(Tivo.curTivoIP, Tivo.curTivoMAK);
             //Parse stream into XML - Setting XML.name in the process
             XML xmlClass = new XML(contents);
-            //Here we need to add XML.name, tivoName, ip, mak to the ListView lstTivos
-            //lstTivos.Items.Add(XML.name); //adds the string to all fields
-
-            //lstTivos.Items.Add("Testing");
-
-            // lstTivos.ItemsSource = new List<string> { "test 1", "Test 2", "Test3" };
-
-            lstTivos.Items.Add(new TivoData()
+            //Here we add Tivo.curTivoDesc, Tivo.curTivoName, Tivo.curTivoIP, Tivo.curTivoMAK to the ListView lstTivos
+            //using the TivoSettings class
+            lstTivos.Items.Add(new TivoSettings()
             {
+<<<<<<< HEAD
                 Description = tivoName,
                 Name = XML.name,
                 IP = ip,
                 MAK = mak
+=======
+                Description = Tivo.curTivoDesc,
+                Name = Tivo.curTivoName,
+                IP = Tivo.curTivoIP,
+                MAK = Tivo.curTivoMAK
+>>>>>>> ListViews
             });
-
-            //lstTivos.SetValue(DataGridTextColumn);
-            /////////////Try to pass a simple array into ListView
-            //string[] row1 = { "s1", "s2", "s3" };
-            //lstTivos.Items.Add("Column1Text").SubItems.AddRange(row1);  //does not like subitems!!!
-
-            //////////////just monkeying around
-            //ListViewItem item = new ListViewItem();
-            //item.Name = (XML.name);
-            //item.Content = ip;
-            //lstTivos.Items.Add(item);
-            //var item2 = new ListViewItem(new[] { "test" });
-
-            ///////////////ListView code from stackoverflow..........Contructor issues?!?!?
-            //ListViewItem newList = new ListViewItem(XML.name); //does not like any arguments
-            //newList.SubItems.Add(tivoName); //again does not like the subitems 
-            //newList.SubItems.Add(ip);
-            //newList.SubItems.Add(mak);
-            //lstTivos.Items.Add(newList);
-
-
         }
 
         private void lstTivos_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,7 +90,7 @@ namespace TTG1
 
         }
     }
-    public class TivoData
+    public class TivoSettings
     {
         public string Description { get; set; }
         public string Name { get; set; }

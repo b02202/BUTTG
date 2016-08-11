@@ -12,13 +12,19 @@ using System.Xml.Serialization;
 
 namespace TTG1
 {
-    public static class Tivo
+    public class Tivo
 
     {
+        public static string curTivoName { get; set; }
+        public static string curTivoIP { get; set; }
+        public static string curTivoMAK { get; set; }
+        public static string curTivoDesc { get; set; }
 
-        public static string GetShowList(string TivoAddress, string Password)
+
+
+        public static string GetShowList(string TivoAddress, string Password, int Count, int Offset)
         {
-            return GetContent(new Uri("https://" + TivoAddress + "/TiVoConnect?Command=QueryContainer&Container=/NowPlaying&Recurse=Yes&ItemCount=32&AnchorOffset="), "tivo", Password);
+                return GetContent(new Uri("https://" + TivoAddress + "/TiVoConnect?Command=QueryContainer&Container=/NowPlaying&Recurse=Yes&ItemCount=" + Count.ToString() + "&AnchorOffset=" + Offset.ToString()), "tivo", Password);
         }
 
         public static string GetDetails(string TivoAddress, string Password)
