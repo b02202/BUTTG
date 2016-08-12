@@ -185,7 +185,7 @@ namespace TTG1 {
         #line hidden
         
         
-        #line 38 "..\..\MainWindow.xaml"
+        #line 39 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem mnuExit;
         
@@ -193,7 +193,7 @@ namespace TTG1 {
         #line hidden
         
         
-        #line 41 "..\..\MainWindow.xaml"
+        #line 42 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox txtOutput;
         
@@ -201,7 +201,7 @@ namespace TTG1 {
         #line hidden
         
         
-        #line 42 "..\..\MainWindow.xaml"
+        #line 43 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ListBox lsbShows;
         
@@ -311,18 +311,26 @@ namespace TTG1 {
             #line hidden
             return;
             case 19:
-            this.mnuExit = ((System.Windows.Controls.MenuItem)(target));
             
             #line 38 "..\..\MainWindow.xaml"
-            this.mnuExit.Click += new System.Windows.RoutedEventHandler(this.mnuExit_Click);
+            ((System.Windows.Controls.MenuItem)(target)).Click += new System.Windows.RoutedEventHandler(this.MenuItem_Click);
             
             #line default
             #line hidden
             return;
             case 20:
-            this.txtOutput = ((System.Windows.Controls.TextBox)(target));
+            this.mnuExit = ((System.Windows.Controls.MenuItem)(target));
+            
+            #line 39 "..\..\MainWindow.xaml"
+            this.mnuExit.Click += new System.Windows.RoutedEventHandler(this.mnuExit_Click);
+            
+            #line default
+            #line hidden
             return;
             case 21:
+            this.txtOutput = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 22:
             this.lsbShows = ((System.Windows.Controls.ListBox)(target));
             return;
             }

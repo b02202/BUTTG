@@ -50,7 +50,7 @@ namespace TTG1
             //Set curTivo* config stuff temporarily for external access and no need to use Settings to configure
             Tivo.curTivoDesc = "My Test Tivo";
             Tivo.curTivoName = "Man Cave";
-            Tivo.curTivoIP = "68.100.133.126";
+            Tivo.curTivoIP = "68.100.133.126";    ///Internal: "172.17.2.231" OR External: "68.100.133.126"
             Tivo.curTivoMAK = "4822977039";
             //Make sure the XML.*COUNTS* are all zero'd
             XML.TotalItems = 0;
@@ -79,6 +79,13 @@ namespace TTG1
         private void winMain_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Setting TiVo to internal IP, need to open firewall to all Port 1413 
+            Tivo.curTivoIP = "172.17.2.231";    ///Internal: "172.17.2.231" OR External: "68.100.133.126"
+
         }
     }
 }
